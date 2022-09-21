@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="views/assets/UploadVdo.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+<body>
+  <div class="TabBar">
+    <header>
+      <div class="logo">
+        <a href="/"><img href="/"
+            src="https://media.discordapp.net/attachments/1013480789062713488/1022162140867596410/unknown.png"
+            width="150" height="50"></a>
+      </div>
+      </form>
+      <nav>
+        <ul class="nav_links">
+          <li><a href="#" style="margin: 10px">Home</a></li>
+          <li><a href="#">Q&A</a></li>
+          <li><a href="#">Courses</a></li>
+          <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">My Profile</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#">Profile</a>
+              <a href="/">logout</a>
+            </div>
+          </div>
+
+        </ul>
+      </nav>
+    </header>
+  </div><br><br>
+  <div class="container">
+    <h1>Upload a video</h1>
+    <form action="upload-video" method="post" enctype="multipart/form-data">
+      <div class="clearfix">
+        <div class="box1" style="background-color:#E6E6E6">
+          <img src="https://media.discordapp.net/attachments/1013480789062713488/1022228434132422746/upload_1.png"
+            class="Play" style="display: block; margin-left: auto; margin-right: auto; margin-top: 30px; ">
+          <div class="Text1">
+            <a href="/upload-video" style="color:black ;">Click to upload video</a>
+            <input type="file" name="fileupload"><br>
+
+          </div>
+        </div>
+        <div class="box2" style="background-color:#E6E6E6">
+          <img src="https://media.discordapp.net/attachments/1013480789062713488/1022228434497314916/photo_1.png"
+            class="Play" style="display: block; margin-left: auto; margin-right: auto; margin-top: 50px; ">
+          <div class="Text2">
+            <a href="#" style="color:black ;">Click to upload thumbnail</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="insidebox">
+        <h3> Title your assets :</h3>
+        <input type="text" name="title">
+
+        <h3> Description :</h3>
+        <input type="text" name="description">
+
+        <h3> Tags :</h3>
+        <input type="text" name="tag">
+
+
+
+        <h3>Categories :</h3>
+
+        <select name="course" id="Categories">
+          <option value="">Plese select course</option>
+          <option value="Mobile develop">Mobile develop</option>
+          <option value="Web application Javascript">Web application Javascript</option>
+          <option value="Deployment for AWS">Deployment for AWS</option>
+        </select>
+        <br><br>
+
+
+
+        <input type="submit" class="fa-upload" style="float: right;" value="Upload" />
+
+      </div>
+    </form>
+  </div>
+
+
+  <script>
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

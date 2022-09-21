@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Watch Page</title>
+  <link href="views/assets/Watch_vdo.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+</head>
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+<body>
+  <div class="TabBar">
+
+    <header>
+
+      </form>
+      <div class="logo">
+        <a href="/"><img href="/"
+            src="https://media.discordapp.net/attachments/1013480789062713488/1022162140867596410/unknown.png"
+            width="150" height="50"></a>
+      </div>
+      <nav>
+        <ul class="nav_links">
+          <li><a href="#" style="margin: 10px">Home</a></li>
+          <li><a href="#">Q&A</a></li>
+          <li><a href="#">Courses</a></li>
+          <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">My Profile</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#">Profile</a>
+              <a href="/">logout</a>
+            </div>
+          </div>
+
+        </ul>
+      </nav>
+    </header>
+  </div><br><br>
+  <video style="height: 500px; display: block; margin: auto;margin-top: 50px;" muted playsInline loop controls
+    src="/works-in-chrome"></video>
+  <div class="white-box">
+    <h1> Ep 3: Should I raise money for my startup, or not?</h1>
+    <div class="vdo1">
+      <img src="https://i.imgur.com/fAVYVCk.png" style="width: auto;" height="378px"> 
+    </div>
+  </div>
+  <script>
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+
+</body>
+
+</html>

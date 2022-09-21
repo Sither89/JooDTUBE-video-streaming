@@ -1,0 +1,25 @@
+<html> 
+  <head><title> NodeJS File Upload Example </title></head> 
+  <body>
+    <form action="upload-video" method="post" enctype="multipart/form-data">
+      <!-- HTML5 file upload selector-->
+      <label for="file">File upload:</label>
+      <input type="file" name="fileupload"><br>
+      <label for="title">Title:</label>
+      <input type="text" name="title"><br>
+      <label for="Description">Description :</label>
+      <input type="text" name="description"><br>
+      <label for="Tag">Tag :</label>
+      <input type="text" name="tag">
+      <br>
+      <label for="Tag">Courses :</label>
+      <select name="course">
+        <option value="">Plese select course</option>
+        <option value="Mobile develop">Mobile develop</option>
+        <option value="Web application Javascript">Web application Javascript</option>
+        <option value="Deployment for AWS">Deployment for AWS</option>
+      </select>
+      <input type="submit">
+    </form>
+  </body> 
+</html>

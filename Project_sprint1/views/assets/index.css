@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+body{
+    background-color:#EF4B4B;
+    background-size: cover;
+    background-position: center;
+}
+li ,a , button{
+    font-family: monospace, sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+}
+.TabBar{
+    color:white;
+}
+
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+}
+.nav_links{
+    list-style: none;
+}
+.nav_links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+.nav_links li a{
+    transition: all 0.3s ease 0s;
+}
+.nav_links li a:hover{
+    color: #00889a;
+}
+button{
+    margin-left: 20px;
+    padding: 9px 25px;
+    background-color: rgba(0,136,169,1);
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+button:hover{
+    background-color: rgba(0,136,169,0.8);
+}
+
+
+.search_wrap{
+	width: 500px;
+	margin: 10px auto;
+}
+
+.search_wrap .search_box{
+	position: relative;
+	width: 550px;
+	height: 20px;
+}
+
+.search_wrap .search_box .input{
+    position: absolute;
+    width: 95.5%;
+	height: 105%;
+	padding: 10px 20px;
+	border-radius: 3px;
+	font-size: 18px;
+}
+
+.search_wrap .search_box .btn{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 60px;
+	height: 250%;
+
+}
+
+.search_wrap .search_box .btn.btn_common .fas{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	color: black;
+	font-size: 20px;
+}
+.search_wrap.search_wrap .search_box .input{
+	padding-right: 0px;
+}
+.search_wrap.search_wrap .search_box .input{
+    border-radius: 50px;
+}
+.search_wrap.search_wrap .search_box .btn{
+	right: 0 px;
+	border-radius: 50%;
+}
+
+.bottomside{
+position: absolute;
+width: 600px;
+left: 165px;
+top: 200px;
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 100;
+font-size: 25px;
+line-height: 20px;
+/* or 80px */
+
+letter-spacing: 0.02em;
+
+color: #FFFFFF;
+}
+
+
+
+@supports (-webkit-text-stroke: 1px #730C0C) {
+    h1 {
+      -webkit-text-fill-color: white;
+       text-shadow: 6px -1px 0 #730C0C, 6px -1px 0 #730C0C, 6px 1px 0 #730C0C, 6px 1px 0 #730C0C;
+    }
+}
+.img{
+    position: absolute;
+    left: 45.34%;
+    top: 15.11%;
+}   
+.button{
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 10%;
+  will-change: transform;
+}
+  
+  .button:disabled {
+    pointer-events: none;
+  }
+  
+  .button:hover {
+    color: #fff;
+    background-color: #FCA61F;;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+  }
+  
+  .button:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
+.white-box{
+    position: absolute;
+    width: 1500px;
+    height: 1300px;
+    left: 155px;
+    top: 600px;
+
+    background: #FFFFFF;
+    border-radius: 30px;
+}
+
+h2{
+    font-size: 30px;
+    font-family: monospace, sans-serif;
+    position: absolute;
+    left: 70px;
+    right: 0px;
+    top: 40px;
+    bottom: 0px; 
+}
+p1{
+    font-size: 20px;
+    font-family: monospace, sans-serif;
+    position: absolute;
+    left: 70px;
+    right: 0px;
+    top: 120px;
+    bottom: 0px;
+}
+.vdo1{
+    height: 100px;
+    position: absolute;
+    left: 20px;
+    right: 0px;
+    top: 250px;
+    bottom: 0px;
+}
+.vdo2{
+    height: 100px;
+    position: absolute;
+    left: 20px;
+    right: 0px;
+    top: 700px;
+    bottom: 0px;
+}
+   
+
+
+
+
+
+
+
