@@ -1,0 +1,11 @@
+export { Home } from "./Home/Home";
+export { Login } from "./Login/Login";
+export { Playlist } from "./Playlist/Playlist";
+export { SignUp } from "./Signup/Signup";
+export { SinglePlaylist } from "./SinglePlaylist/SinglePlaylist";
+export { WatchLater } from "./WatchLater/WatchLater";
+export { SingleVideoPage } from "./SingleVideoPage/SingleVideoPage";
+export { History } from "./History/History";
+export { Liked } from "./Liked/Liked";
+export { PageNotFound } from "./404/404";
+export { SearchResult } from "./SearchResult/SearchResult";

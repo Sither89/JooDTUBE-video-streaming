@@ -1,0 +1,12 @@
+.related-video-bar {
+  margin: 3.2rem 3.2rem 1.8rem 1.8rem;
+}
+.panel-title {
+  margin: 0;
+  line-height: 1;
+}
+@media (max-width: 1023px) {
+  .related-video-bar {
+    margin: 0 auto;
+  }
+}

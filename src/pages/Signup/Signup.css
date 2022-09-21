@@ -1,0 +1,27 @@
+/*input properties*/
+.input-border {
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--size-4);
+  width: 100%;
+}
+.label {
+  padding-top: var(--size-12);
+  padding-bottom: var(--size-4);
+  display: block;
+}
+.input-checkbox {
+  display: flex;
+  align-items: center;
+  margin: var(--size-8) 0;
+  gap: var(--size-4);
+  font-size: var(--size-sm);
+}
+/*form width*/
+.wrapper .form-box {
+  width: var(--size-320);
+  margin: 8rem;
+}
+/*button*/
+.btn-fill {
+  width: 100%;
+}

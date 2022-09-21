@@ -1,0 +1,14 @@
+.footer {
+  background-color: var(--dark-color);
+  padding: var(--size-12);
+  text-align: center;
+  color: var(--white);
+}
+
+.footer .link {
+  color: var(--white);
+}
+
+.footer ul {
+  padding-inline-start: 0px;
+}

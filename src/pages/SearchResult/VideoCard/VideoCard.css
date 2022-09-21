@@ -1,0 +1,19 @@
+.card-container {
+  max-width: 28rem;
+  height: unset;
+}
+.card-info {
+  align-items: baseline;
+}
+.additional-options {
+  position: absolute;
+  background: var(--white);
+  border-radius: var(--size-2xs);
+  right: 40px;
+  bottom: -40px;
+  width: 20rem;
+  z-index: 2;
+}
+.additional-options > li:hover {
+  background-color: var(--secondary-color);
+}

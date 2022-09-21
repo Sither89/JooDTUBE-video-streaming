@@ -1,0 +1,29 @@
+.sidebar-container {
+  border-right: 1px solid var(--primary-color);
+  width: max-content;
+  z-index: 2;
+  position: sticky;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+}
+.aside-list {
+  padding: 0 var(--size-xl);
+}
+@media (max-width: 767px) {
+  .sidebar-container {
+    width: 100%;
+    position: fixed;
+    top: 90vh;
+    bottom: 0;
+    background: var(--background-color);
+  }
+  .aside-list {
+    display: flex;
+    padding: 0 var(--size-12);
+  }
+  .sidebar-container {
+    width: 100vw;
+    overflow: auto;
+  }
+}

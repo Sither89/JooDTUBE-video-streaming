@@ -1,0 +1,8 @@
+.wrapper.wrapper-video-page {
+  grid-template-columns: 3fr 1fr;
+}
+@media (max-width: 1023px) {
+  .wrapper.wrapper-video-page {
+    grid-template-columns: 1fr;
+  }
+}

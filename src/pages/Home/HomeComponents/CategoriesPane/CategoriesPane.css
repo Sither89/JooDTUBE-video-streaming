@@ -1,0 +1,13 @@
+.wd-max {
+  width: max-content;
+}
+.categories {
+  width: 77vw;
+  overflow-x: auto;
+}
+@media (max-width: 767px) {
+  .categories {
+    width: 100vw;
+    overflow-x: auto;
+  }
+}
