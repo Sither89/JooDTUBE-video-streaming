@@ -119,10 +119,10 @@ http.listen(9090, function (req, res) {
       //Copy the uploaded file to a custom folder
       fs.rename(filepath, newpath, function () {
         //Send a NodeJS file upload confirmation message
-        
+
         res.write('<script>     function myFunction() {          alert("Hello! I am an alert box!");      } </script>');
         res.end();
-      }); 
+      });
     });
   });
 
