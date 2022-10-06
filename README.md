@@ -13,6 +13,8 @@ $ git clone https://github.com/Sither89/JooDTUBE-video-streaming.git
 $ cd JooDTUBE-video-streaming
 $ npm install
 $ npm start
+go to 
+http://localhost:9090/
 ```
 
 ---
