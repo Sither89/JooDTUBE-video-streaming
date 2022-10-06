@@ -3,8 +3,7 @@
 
 # PortalTube
 
-![Forks](https://img.shields.io/github/forks/abhij1607/portal-tube)
-![Stars](https://img.shields.io/github/stars/abhij1607/portal-tube)
+![](https://media.discordapp.net/attachments/1013480789062713488/1022162261839712367/unknown.png?width=1440&height=403)
 
  </div>
 
