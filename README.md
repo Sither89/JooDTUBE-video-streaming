@@ -1,6 +1,3 @@
-<div align="center">
-  <img src="/public/logo192.png" height="200" width="200" alt="logo"/>
-
 # JooDTUBE
 
 ![](https://media.discordapp.net/attachments/1013480789062713488/1022162261839712367/unknown.png?width=1440&height=403)
