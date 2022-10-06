@@ -9,8 +9,8 @@
 ## How to run the app locally?
 
 ```
-$ git clone https://github.com/abhij1607/portal-tube.git
-$ cd portal-tube
+$ git clone https://github.com/Sither89/JooDTUBE-video-streaming.git
+$ cd JooDTUBE-video-streaming
 $ npm install
 $ npm start
 ```
