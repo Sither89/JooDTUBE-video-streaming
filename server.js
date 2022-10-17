@@ -37,6 +37,9 @@ http.listen(9090, function (req, res) {
     res.render("Upload_video",{success:''});
   });
 
+  app.get("/register", function (req, res) {
+      res.render("Register",{success:''});
+    });
 
 
   app.get("/works-in-chrome", (req, res) => {
