@@ -3,9 +3,12 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Home Page</title>
+  
   <link rel="stylesheet" href="views/assets/UploadVdo.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
@@ -35,16 +38,17 @@
       </nav>
     </header>
   </div><br><br>
+
   <div class="container">
     <h1>Upload a video</h1>
-    <form action="upload-video" method="post" enctype="multipart/form-data">
+    <form action="/upload-vdo" method="post" enctype="multipart/form-data">
       <div class="clearfix">
         <div class="box1" style="background-color:#E6E6E6">
           <img src="https://media.discordapp.net/attachments/1013480789062713488/1022228434132422746/upload_1.png"
             class="Play" style="display: block; margin-left: auto; margin-right: auto; margin-top: 30px; ">
           <div class="Text1">
-            <a href="/upload-video" style="color:black ;">Click to upload video</a>
-            <input type="file" name="fileupload"><br>
+            <a href="" style="color:black ;">Click to upload video</a>
+            <input type="file" name="video" accept="video/*"><br>
 
           </div>
         </div>
@@ -53,6 +57,7 @@
             class="Play" style="display: block; margin-left: auto; margin-right: auto; margin-top: 50px; ">
           <div class="Text2">
             <a href="#" style="color:black ;">Click to upload thumbnail</a>
+            <!-- <input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg"> -->
           </div>
         </div>
 
@@ -70,7 +75,7 @@
 
 
 
-        <h3>Categories :</h3>
+        <h3>Course :</h3>
 
         <select name="course" id="Categories">
           <option value="">Plese select course</option>
@@ -82,13 +87,17 @@
 
 
 
-        <input type="submit" class="fa-upload" style="float: right;" value="Upload" />
+        <input type="submit" class="fa-upload" style="float: right;" value="upload" />
+
+        <% if(success !='' ){%>
+          <div role="alert" class="fade alert alert-success alert-dismissible show" >
+            <%= success%>
+          </div>
+          <% } %>
 
       </div>
     </form>
   </div>
-
-
   <script>
     /* When the user clicks on the button, 
     toggle between hiding and showing the dropdown content */
@@ -109,7 +118,17 @@
         }
       }
     }
+      
+
+        kofiWidgetOverlay.draw('mohamedghulam', {
+          'type': 'floating-chat',
+          'floating-chat.donateButton.text': 'Support me',
+          'floating-chat.donateButton.background-color': '#323842',
+          'floating-chat.donateButton.text-color': '#fff'
+        });
+
   </script>
+  
 </body>
 
 </html>

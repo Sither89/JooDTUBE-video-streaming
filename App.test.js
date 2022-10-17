@@ -6,7 +6,6 @@ describe("GET /login", () => {
         const response = await request(baseURL).get("/login");
         expect(response.statusCode).toBe(200);
     });
-
 });
 
 describe("GET /watch_vdo", () => {
@@ -22,3 +21,8 @@ describe("GET /upload_vdo", () => {
         expect(response.statusCode).toBe(400);
     });
 });
+
+
+describe("GET / login", () =>{
+    it("")
+})

@@ -1,30 +1,25 @@
 var express = require("express");
 var app = express();
-var http = require("http").createServer(app);
-
-
-
+var http = require('http').createServer(app);
 var bodyParser = require("body-parser");
-//var bcrypt = require("bcrypt");
-
 
 var formidable = require('formidable');
 var fs = require('fs');
 var { getVideoDurationInSeconds } = require("get-video-duration");
-
 var multer = require("multer");
 
-//app.use(express.bodyParser());
-//app.use("/view", express.static(__dirname + "/view"));
 app.use('/views', express.static('views'));
 app.set('views', './views');
 app.set("view engine", "ejs");
+
+const session = require('express-session');
+const flash = require('connect-flash');
 
 const filePath = "videos/SampleVideo_1280x720_1mb.mp4";
 
 
 http.listen(9090, function (req, res) {
-  console.log("server is start.");
+  console.log("server is start. On http://localhost:9090/");
 
   app.get("/", function (req, res) {
     res.render("index");
@@ -39,7 +34,7 @@ http.listen(9090, function (req, res) {
   });
 
   app.get("/upload_vdo", function (req, res) {
-    res.render("Upload_video");
+    res.render("Upload_video",{success:''});
   });
 
 
@@ -68,61 +63,32 @@ http.listen(9090, function (req, res) {
     });
   });
 
-
-  app.get("/upload", function (req, res) {
-    res.render("upload");
-  });
-
-
-  app.post("/fileupload", (function (req, res) {
-    if (req.url == '/fileupload') {
-      var form = new formidable.IncomingForm();
-      form.parse(req, function (err, fields, files) {
-
-        var tempFilePath = files.filetoupload.filepath;
-        var projectFilePath = __dirname + '/public/videos' +
-          files.filetoupload.originalFilename;
-        fs.rename(tempFilePath, projectFilePath, function (err) {
-          if (err) throw err;
-          res.write('File has been successfully uploaded');
-          res.end();
-        });
-      });
-    }
-    else {
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.write(
-        '<form action="fileupload" method="post" enctype="multipart/form-data">');
-      res.write('<input type="file" name="filetoupload"><br>');
-      res.write('<input type="submit">');
-      res.write('</form>');
-      return res.end();
-    }
+  app.use(session({
+    secret: 'upload',
+    saveUninitialized: true,
+    resave: true
   }));
 
-  app.post("/upload-video", function uploadFiles(req, res) {
+  app.use(flash());
 
-    //Create an instance of the form object
-    let form = new formidable.IncomingForm();
+  var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+      callback(null, './videos');
+    },
+    filename: function (req, file, callback) {
+      callback(null, file.originalname);
+    }
+  });
 
-    //Process the file upload in Node
-    form.parse(req, function (error, fields, file) {
-      console.log(fields);
-      let title = fields.title;
-      let description = fields.description;
-      let tag = fields.tag;
-      let course = fields.course;
-      let filepath = file.fileupload.filepath;
-      let newpath = 'videos/';
-      newpath += file.fileupload.originalFilename;
+  var upload = multer({ storage: storage }).single('video');
 
-      //Copy the uploaded file to a custom folder
-      fs.rename(filepath, newpath, function () {
-        //Send a NodeJS file upload confirmation message
-
-        res.write('<script>     function myFunction() {          alert("Hello! I am an alert box!");      } </script>');
-        res.end();
-      });
+  app.post('/upload-vdo', function (req, res) {
+    upload(req, res, function (err) {
+      if (err) {
+        console.log(err)
+        return res.end("Error uploading file.");
+      }
+      res.render('Upload_video' , {success:'Uploaded Video Successfully'});
     });
   });
 
