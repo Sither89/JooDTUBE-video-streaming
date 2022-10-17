@@ -7,6 +7,7 @@ body {
 }
 
 li,
+label,
 a,
 button {
   font-family: monospace, sans-serif;
@@ -67,8 +68,8 @@ button:hover {
 .fa-upload {
   font-family: monospace, sans-serif;
   font-size: x-large;
-  margin-left: 20px;
-  padding: 9px 25px;
+  
+  padding: 9px ;
   background-color: #F0AE00;
   cursor: pointer;
   transition: all 0.3s ease 0s;
@@ -181,10 +182,8 @@ button:hover {
 h1 {
   font-size: 50px;
   font-family: monospace, sans-serif;
-  position: absolute;
-  width: 688px;
-  height: 75px;
-  left: 300px;
+  position: relative;
+  left: 150px;
   top: 50px
 }
 
@@ -255,7 +254,7 @@ select {
 }
 
 .insidebox {
-  margin-top: 500px;
+  margin-top: 400px;
   margin-left: 25%;
   display: block;
   width: 500px;
