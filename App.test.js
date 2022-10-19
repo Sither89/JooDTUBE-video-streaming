@@ -1,6 +1,15 @@
 const request = require("supertest")
 const baseURL = "http://localhost:9090"
 
+
+
+describe("GET /", () => {
+    it("should return 200", async () => {
+        const response = await request(baseURL).get("/");
+        expect(response.statusCode).toBe(200);
+    });
+});
+
 describe("GET /login", () => {
     it("should return 200", async () => {
         const response = await request(baseURL).get("/login");
@@ -22,7 +31,12 @@ describe("GET /upload_vdo", () => {
     });
 });
 
-
-describe("GET / login", () =>{
-    it("")
-})
+describe("POST /upload-vdo", () => {
+    it("Uploaded success should return 200", async () => {
+        const response = await request(baseURL).post("/upload-vdo")
+            .attach(
+                'video', './test-upload/test.mp4'
+            )
+        expect(response.statusCode).toBe(200)
+    });
+});

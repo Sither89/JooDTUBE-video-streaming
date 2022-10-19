@@ -34,12 +34,12 @@ http.listen(9090, function (req, res) {
   });
 
   app.get("/upload_vdo", function (req, res) {
-    res.render("Upload_video",{success:''});
+    res.render("Upload_video", { success: '' });
   });
 
   app.get("/register", function (req, res) {
-      res.render("Register",{success:''});
-    });
+    res.render("Register");
+  });
 
 
   app.get("/works-in-chrome", (req, res) => {
