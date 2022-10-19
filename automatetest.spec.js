@@ -76,6 +76,24 @@ describe('JoodTUBE', () => {
     await page.click('button[id=dropbtn]');
     await page.click('a[id=logout]');
     expect( page.url() ).toBe('http://localhost:9090/')
+
+    await page.goto('http://localhost:9090/register')
+    await Promise.all([  
+      page.$eval('a#logo', element =>
+        element.click()
+      ),
+      await page.waitForNavigation(),
+      ]);
+    expect( page.url() ).toBe('http://localhost:9090/')
+
+    await page.goto('http://localhost:9090/register')
+    await Promise.all([  
+      page.$eval('a#homepage', element =>
+        element.click()
+      ),
+      await page.waitForNavigation(),
+      ]);
+    expect( page.url() ).toBe('http://localhost:9090/')
   })
 
   it('should display login page', async () => {
