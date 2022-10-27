@@ -3,16 +3,6 @@ describe('JoodTUBE', () => {
     await page.goto('http://localhost:9090/')
   })
 
-  it('should display login page', async () => {
-    await page.goto('http://localhost:9090/')
-    await Promise.all([  
-      page.$eval('a[id=loginpage]', element =>
-        element.click()
-      ),
-      await page.waitForNavigation(),
-      ]);
-    expect( page.url() ).toBe('http://localhost:9090/login')
-  })
 
     
   it('should display login page', async () => {
@@ -37,6 +27,19 @@ describe('JoodTUBE', () => {
     await page.$eval( 'a[id=btnRegisterpage]', form => form.click() );
     expect( page.url() ).toBe('http://localhost:9090/register')
   })
+
+  it('should display register page', async () => {
+    await page.goto('http://localhost:9090/login')
+    await Promise.all([  
+      page.$eval('a[id=registerpage]', element =>
+        element.click()
+      ),
+      await page.waitForNavigation(),
+      ]);
+    expect( page.url() ).toBe('http://localhost:9090/register')
+  })
+
+  
   it('should display Home page', async () => {
     await Promise.all([  
       page.$eval('a#logo', element =>
