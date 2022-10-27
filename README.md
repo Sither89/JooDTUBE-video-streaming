@@ -27,4 +27,3 @@ http://localhost:9090/
 ---
 
 ## Features
-## New Features
