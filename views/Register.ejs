@@ -28,20 +28,21 @@
         </div><br><br>
         
       <div class="whilebox">
+        <form id="submitForm" action="/register" method="post">
             <img src="views/logo_indexJooDTUBE.png" class="img1"  >
             <div class="inside" >
                 <h2>Register</h2>
                 <div class="inputbox1">
-                    <input type="text" placeholder="Fistname">
+                    <input type="text" placeholder="Fistname" name="fname" id="fname">
                 </div>
                 <div class="inputbox2">
-                    <input type="text" placeholder="Lastname">
+                    <input type="text" placeholder="Lastname" name="lname" id="lname">
                 </div>
                 <div class="inputbox3">
-                    <input type="text" placeholder="Username">
+                    <input type="text" placeholder="Username" name="Username" id="Username">
                 </div>
                 <div class="inputbox4">
-                    <input type="text" placeholder="E-mail address">
+                    <input type="text" placeholder="E-mail address" name="Email" id="Email">
                 </div>
                 <div class="inputbox5">
                     <input type="password" placeholder="Password" name="password" id="password">
@@ -54,10 +55,12 @@
                             </a>
                     </a>
                 </div>
+                
                 <div class ="buttonReg">
-                    <a href="/login" class="button" >Register</a>
+                    <button  class="submit" >Register</button>
                 </div>
                 
+            </form>  
             </div>       
             
     
