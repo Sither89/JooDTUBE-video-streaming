@@ -13,6 +13,7 @@ Download and install MongoDB Community from this link : https://www.mongodb.com/
 
 ![](https://media.discordapp.net/attachments/904402571358244894/1039077078550712381/image.png?width=1440&height=403)
 
+Then connect to Database.
 
 ```
 $ git clone https://github.com/Sither89/JooDTUBE-video-streaming.git
