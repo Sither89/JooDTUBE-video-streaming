@@ -9,6 +9,9 @@
 ## How to run the app locally?
 
 ```
+Download and install MongoDB Community from this link : https://www.mongodb.com/try/download/community
+![](https://media.discordapp.net/attachments/904402571358244894/1039077078550712381/image.png)
+
 $ git clone https://github.com/Sither89/JooDTUBE-video-streaming.git
 $ cd JooDTUBE-video-streaming
 $ npm install
