@@ -11,7 +11,7 @@
 Download and install MongoDB Community from this link : https://www.mongodb.com/try/download/community
 
 
-![](https://media.discordapp.net/attachments/904402571358244894/1039077078550712381/image.pngwidth=440&height=403)
+![](https://media.discordapp.net/attachments/904402571358244894/1039077078550712381/image.png?width=440&height=403)
 
 
 ```
