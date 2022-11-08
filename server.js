@@ -67,7 +67,6 @@ http.listen(9090, function (req, res) {
 /////////////////////////////////////
 /////////////////////////////////////
   app.post("/login", async function (req, res) {
-    console.log(req.body)
     MongoClient.connect(url, async function(err, db) {
       var val = 0;
       const item = await Contact.find({})
