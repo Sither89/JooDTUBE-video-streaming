@@ -29,7 +29,7 @@ header{
 .nav_links{
     list-style: none;
     position: absolute;
-    right: 100px;
+    right: 10%;
 }
 .nav_links li {
     display: inline-block;
@@ -269,25 +269,21 @@ select{
 .search{
     flex-direction: row;
     margin-top: 8%;
-    margin-left: 45%;
+    margin-left: 39.5%;
 }
      
 .search button{
-    
     background-color: white;
     flex-direction: row;
     color:black;
-    
     padding: 1px  2px 2px 1px;
     margin-top: 10px;
     position: absolute;
-    right: 5.5%;
+    right: 11.5%;
     font-size: 12px;
     border: none;
-   
-    
-  
 }
+
 .white-box{
   margin: 0 auto;
   width: 1500px;

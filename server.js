@@ -14,7 +14,7 @@ const mongoose = require("mongoose");
 const User = require('./models/User');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
-var bcrypt = require('bcryptjs'); 
+var bcrypt = require('bcryptjs');
 ////////////////////////////////////////////
 
 
@@ -43,8 +43,8 @@ http.listen(9090, function (req, res) {
   });
 
 
-/////////////////////////////////////
-/////////////////////////////////////
+  /////////////////////////////////////
+  /////////////////////////////////////
   const contactSchema = {
     fname: String,
     lname: String,
@@ -53,50 +53,52 @@ http.listen(9090, function (req, res) {
     password: String,
     Role: String
   };
-  
+
   const Contact = mongoose.model("customers", contactSchema);
-/////////////////////////////////////
-/////////////////////////////////////
-  
+  /////////////////////////////////////
+  /////////////////////////////////////
+
 
   app.get("/login", function (req, res) {
     res.render("login");
   });
 
-  
-/////////////////////////////////////
-/////////////////////////////////////
+
+
+
+  /////////////////////////////////////
+  /////////////////////////////////////
   app.post("/login", async function (req, res) {
-    MongoClient.connect(url, async function(err, db) {
+    MongoClient.connect(url, async function (err, db) {
       var val = 0;
       const item = await Contact.find({})
-     // bcrypt.compare(req.body.password, item.password).then(function(res) {
-        // res == true/false
-     // });
-    // const saltRounds = 10;
-   // const hashp = bcrypt.hashSync(req.body.password, saltRounds);
-    // const isCorrect = bcrypt.compareSync(hashp, item.password);
-     //console.log(" " + isCorrect)
+      // bcrypt.compare(req.body.password, item.password).then(function(res) {
+      // res == true/false
+      // });
+      // const saltRounds = 10;
+      // const hashp = bcrypt.hashSync(req.body.password, saltRounds);
+      // const isCorrect = bcrypt.compareSync(hashp, item.password);
+      //console.log(" " + isCorrect)
       item.forEach(item => {
-        if(req.body.username === item.Email && val === 0){
-          if(req.body.password === item.password && val === 0){
-            if(item.Role == "Admin"){
-                res.redirect('/upload_vdo?'+ item._id)
-               val = 1 ;
+        if (req.body.username === item.Email && val === 0) {
+          if (req.body.password === item.password && val === 0) {
+            if (item.Role == "Admin") {
+              res.redirect('/course?' + item._id)
+              val = 1;
             }
-            if(item.Role == "User"){
-              res.redirect('/watch_vdo?'+ item._id)
-              val = 1 ;
+            if (item.Role == "User") {
+              res.redirect('/course_student?' + item._id)
+              val = 1;
             }
-              console.log("pass");
-          }else{
-            val = 0 ;
+
+          } else {
+            val = 0;
           }
-      }else{
-             val = 0 ;
+        } else {
+          val = 0;
         }
       });
-      if(val === 0){
+      if (val === 0) {
         res.render("login");
       }
     });
@@ -120,8 +122,8 @@ http.listen(9090, function (req, res) {
   /////////////////////////////////////
   app.post("/register", async function (req, res) {
     //console.log(req.body)
-   // var hashp = req.body.password.toString('base64')
-   const saltRounds = 10;
+    // var hashp = req.body.password.toString('base64')
+    const saltRounds = 10;
     // const hashp = bcrypt.hashSync(req.body.password, saltRounds);
     const contact = new Contact({
       fname: req.body.fname,
@@ -130,19 +132,21 @@ http.listen(9090, function (req, res) {
       Email: req.body.Email,
       password: req.body.password,
       Role: "User"
-  });
-  contact.save(function (err) {
+    });
+    contact.save(function (err) {
       if (err) {
-          throw err;
-      }else{
+        throw err;
+      } else {
         res.render("login");
-      } 
-  });
+      }
+    });
   });
   /////////////////////////////////////
   /////////////////////////////////////
- 
 
+  app.post("/search_course", function (req, res) {
+    
+  });
   app.get("/works-in-chrome", (req, res) => {
     res.setHeader("content-type", "video/mp4");
 
@@ -192,9 +196,19 @@ http.listen(9090, function (req, res) {
         console.log(err)
         return res.end("Error uploading file.");
       }
-      res.render('Upload_video' , {success:'Uploaded Video Successfully'});
+      res.render('Upload_video', { success: 'Uploaded Video Successfully' });
     });
   });
 
+
+  app.get("/course", function (req, res) {
+    res.render("Course");
+  });
+  app.get("/course_guest", function (req, res) {
+    res.render("Course_guest");
+  });
+  app.get("/course_student", function (req, res) {
+    res.render("Course_student");
+  });
 });
 
