@@ -19,7 +19,7 @@ MongoClient.connect(url, function(err, db) {
     Role: "Admin"
     };
     
-  const User = {
+  const User = { 
     fname: "User",
     lname: "User",
     Username: "User",
