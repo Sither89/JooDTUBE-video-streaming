@@ -89,14 +89,13 @@ const item = await Contact.find({})
           if(check == true){
             
             if(item.Role == "Admin"){
-                res.redirect('/upload_vdo?'+ item._id)
+                res.redirect('/course?'+"user="+ item._id)
                val = 1 ;
             }
             if(item.Role == "User"){
-              res.redirect('/watch_vdo?'+ item._id)
+              res.redirect('/course?'+"user="+ item._id)
               val = 1 ;
             }
-              console.log("pass");
           }else{
             val = 0 ;
           }
@@ -189,8 +188,17 @@ const item = await Contact.find({})
     destination: function (req, file, callback) {
       callback(null, './videos');
     },
+    fileFilter: (req, file, cb) => {
+      if (file.mimetype == "video/mp4" ) {
+        cb(null, true);
+      } else {
+        cb(null, false);
+        return cb(new Error('Only .mp4 format allowed!'));
+      }
+    },
     filename: function (req, file, callback) {
-      callback(null, file.originalname);
+      console.log(file.mimetype);
+      callback(null, "EP1111111" + ".mp4" );
     }
   });
 
@@ -204,6 +212,21 @@ const item = await Contact.find({})
       }
       res.render('Upload_video' , {success:'Uploaded Video Successfully'});
     });
+  });
+
+  app.get("/course", async function (req, res) {
+    let user_query = req.query.user;
+    console.log(user_query);
+
+    // let articles = await Article.findAll().paginate({user: user_query}).exec();
+
+    res.render("Course",{user : user_query});
+  });
+  app.get("/course_guest", function (req, res) {
+    res.render("Course_guest");
+  });
+  app.get("/course_student", function (req, res) {
+    res.render("Course_student");
   });
 
 });
