@@ -15,18 +15,25 @@ MongoClient.connect(url, function(err, db) {
     lname: "Admin",
     Username: "Admin",
     Email: "admin",
-    password: "admin12345",
+    password: "$2a$10$93obybBMKt9XWaiXZ7GmJeXpcuyeVgWcLK7CRoUEZxCXGwRYlu70O",
     Role: "Admin"
     };
     
-  const User = { 
+  const User = {
     fname: "User",
     lname: "User",
     Username: "User",
     Email: "user",
-    password: "user12345",
+    password: "$2a$10$Yv2T0rLxvbWxHSDPLHBWduIvQlEte8lhgvFInKP9W8TtcpOPhHl9O",
     Role: "User"
     };
+
+  const course = {
+      id_course: "String",
+      name: "AWS",
+      description: "Guide",
+      Teacher: "9Arm",
+    };  
 
   dbo.collection("customers").insertOne(Admin, function(err, res) {
     if (err) throw err;
@@ -36,6 +43,11 @@ MongoClient.connect(url, function(err, db) {
   dbo.collection("customers").insertOne(User, function(err, res) {
     if (err) throw err;
   // console.log("1 document inserted");
+    db.close();
+  });
+  dbo.collection("course").insertOne(course, function(err, res) {
+    if (err) throw err;
+   // console.log("1 document inserted");
     db.close();
   });
 });
