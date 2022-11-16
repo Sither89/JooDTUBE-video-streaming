@@ -13,7 +13,7 @@ require('./db');
 const mongoose = require("mongoose");
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
-var bcrypt = require('bcryptjs'); 
+var bcrypt = require('bcryptjs');
 ////////////////////////////////////////////
 
 
@@ -42,8 +42,8 @@ http.listen(9090, function (req, res) {
   });
 
 
-/////////////////////////////////////
-/////////////////////////////////////
+  /////////////////////////////////////
+  /////////////////////////////////////
   const contactSchema = {
     fname: String,
     lname: String,
@@ -52,58 +52,58 @@ http.listen(9090, function (req, res) {
     password: String,
     Role: String
   };
-  
+
   const Contact = mongoose.model("customers", contactSchema);
 
-/////////////////////////////////////
-/////////////////////////////////////
-  
+  /////////////////////////////////////
+  /////////////////////////////////////
+
 
   app.get("/login", function (req, res) {
     res.render("login");
   });
 
-  
-/////////////////////////////////////
-/////////////////////////////////////
+
+  /////////////////////////////////////
+  /////////////////////////////////////
   app.post("/login", async function (req, res) {
     //console.log(req.body)
-    MongoClient.connect(url, async function(err, db) {
+    MongoClient.connect(url, async function (err, db) {
       var val = 0;
 
-   
-  /////////////////////////////////////////
-    const client = new MongoClient(url);
-    await client.connect();
-    const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
-   
-  /////////////////////////////////////////
 
-  
-const item = await Contact.find({})
+      /////////////////////////////////////////
+      const client = new MongoClient(url);
+      await client.connect();
+      const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
+
+      /////////////////////////////////////////
+
+
+      const item = await Contact.find({})
       const salt = 10;
       const hashpass = bcrypt.hashSync(req.body.password, salt);
       item.forEach(item => {
-      check = bcrypt.compareSync (req.body.password , item.password);
-        if(req.body.username === item.Email && val === 0){
-          if(check == true){
-            
-            if(item.Role == "Admin"){
-                res.redirect('/course?'+"user="+ item._id)
-               val = 1 ;
+        check = bcrypt.compareSync(req.body.password, item.password);
+        if (req.body.username === item.Email && val === 0) {
+          if (check == true) {
+
+            if (item.Role == "Admin") {
+              res.redirect('/course?' + "user=" + item._id)
+              val = 1;
             }
-            if(item.Role == "User"){
-              res.redirect('/course?'+"user="+ item._id)
-              val = 1 ;
+            if (item.Role == "User") {
+              res.redirect('/course?' + "user=" + item._id)
+              val = 1;
             }
-          }else{
-            val = 0 ;
+          } else {
+            val = 0;
           }
-      }else{
-             val = 0 ;
+        } else {
+          val = 0;
         }
       });
-      if(val === 0){
+      if (val === 0) {
         res.render("login");
       }
     });
@@ -126,7 +126,7 @@ const item = await Contact.find({})
   /////////////////////////////////////
   /////////////////////////////////////
   app.post("/register", async function (req, res) {
-   const saltRounds = 10;
+    const saltRounds = 10;
     const hashp = bcrypt.hashSync(req.body.password, saltRounds);
     const contact = new Contact({
       fname: req.body.fname,
@@ -135,22 +135,22 @@ const item = await Contact.find({})
       Email: req.body.Email,
       password: hashp,
       Role: "User"
-  });
-  contact.save(function (err) {
-    
+    });
+    contact.save(function (err) {
+
       if (err) {
-          throw err;
-          
-          
-      }else{
-        
+        throw err;
+
+
+      } else {
+
         res.render("login");
-      } 
-  });
+      }
+    });
   });
   /////////////////////////////////////
   /////////////////////////////////////
- 
+
 
   app.get("/works-in-chrome", (req, res) => {
     res.setHeader("content-type", "video/mp4");
@@ -189,7 +189,7 @@ const item = await Contact.find({})
       callback(null, './videos');
     },
     fileFilter: (req, file, cb) => {
-      if (file.mimetype == "video/mp4" ) {
+      if (file.mimetype == "video/mp4") {
         cb(null, true);
       } else {
         cb(null, false);
@@ -198,7 +198,7 @@ const item = await Contact.find({})
     },
     filename: function (req, file, callback) {
       console.log(file.mimetype);
-      callback(null, "EP1111111" + ".mp4" );
+      callback(null, "EP1111111" + ".mp4");
     }
   });
 
@@ -210,17 +210,19 @@ const item = await Contact.find({})
         console.log(err)
         return res.end("Error uploading file.");
       }
-      res.render('Upload_video' , {success:'Uploaded Video Successfully'});
+      res.render('Upload_video', { success: 'Uploaded Video Successfully' });
     });
   });
 
   app.get("/course", async function (req, res) {
     let user_query = req.query.user;
     console.log(user_query);
-
+    function connectDB(){
+      
+    }
     // let articles = await Article.findAll().paginate({user: user_query}).exec();
 
-    res.render("Course",{user : user_query});
+    res.render("Course", { user: user_query });
   });
   app.get("/course_guest", function (req, res) {
     res.render("Course_guest");
