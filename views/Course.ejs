@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-
-<body>
+<script src="CourseDB.js"></script>
+<body onload="showCourse()">
     <div class="TabBar">
         <header>
             <div class="logo">
@@ -64,36 +64,31 @@
             </form>
         </div>
     </div>
-    <div class="white-box">
+    <div class="white-box" id="box">
         <h2 style="padding: 4%; font-family: monospace, sans-serif;">Courses</h2>
-        <div class="flex-container">
-            <div class="item1">
+        <div class="flex-container" id="line1">
+            <div class="item1" id="11">
                 <img class="imgdum" src="/views/image/aws_logo_smile_1200x630.png"><br><br>
-                <a class="textnamevdo" href="watch_vdo">AWS_DEPLOY&CLOUD</a>
+                <a class="textnamecourse" href="watch_vdo">AWS_DEPLOY&CLOUD</a>
             </div>
-            <div class="item1">
+            <div class="item1" id="12">
                 <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamevdo" href="###">Ep2 </a>
+                <a class="textnamecourse" href="###">Ep2 </a>
             </div>
-            <div class="item1">
+            <div class="item1" id="13">
                 <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamevdo" href="##">Ep3 </a>
+                <a class="textnamecourse" href="##">Ep3 </a>
 
             </div>
         </div>
-        <div class="flex-container" style="margin-top: 7%;">
-            <div class="item1">
+        <div class="flex-container" id="line2" style="margin-top: 7%;">
+            <div class="item1" id="21">
                 <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamevdo" href="###">Ep4 </a>
+                <a class="textnamecourse" href="###">Ep4 </a>
             </div>
             <div class="item1">
                 <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamevdo" href="###">Ep5 </a>
-            </div>
-            <div class="item1">
-                <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamevdo" href="##">Ep6 </a>
-
+                <a class="textnamecourse" href="###">Ep5 </a>
             </div>
         </div>
 
@@ -121,6 +116,105 @@
                     }
                 }
             }
+        }
+
+        
+
+        function showCourse() {
+            var linevalue = 1;
+            connectDB();
+            var line_div = document.createElement("div");
+            var line_class = document.createAttribute("class");
+            line_class.value = "flex-container";
+            var line_id = document.createAttribute("id");
+            line_id.value = "line" + linevalue;
+            line_div.setAttributeNode(line_class);
+            line_div.setAttributeNode(line_id);
+
+            var item1_div = document.createElement("div");
+            var item1_class = document.createAttribute("class");
+            item1_class.value = "item1";
+            var item1_id = document.createAttribute("id");
+            item1_id.value = "11";
+            item1_div.setAttributeNode(item1_class);
+            item1_div.setAttributeNode(item1_id);
+
+            var item2_div = document.createElement("div");
+            var item2_class = document.createAttribute("class");
+            item2_class.value = "item1";
+            var item2_id = document.createAttribute("id");
+            item2_id.value = "12";
+            item2_div.setAttributeNode(item2_class);
+            item2_div.setAttributeNode(item2_id);
+
+            var item3_div = document.createElement("div");
+            var item3_class = document.createAttribute("class");
+            item3_class.value = "item1";
+            var item3_id = document.createAttribute("id");
+            item3_id.value = "13";
+            item3_div.setAttributeNode(item3_class);
+            item3_div.setAttributeNode(item3_id);
+
+            var img_tag1 = document.createElement("img");
+            img_tag1.src = "/views/image/dummy-img.png";
+            img_tag1.setAttribute("class", "imgdum");
+
+            var img_tag2 = document.createElement("img");
+            img_tag2.src = "/views/image/dummy-img.png";
+            img_tag2.setAttribute("class", "imgdum");
+
+            var img_tag3 = document.createElement("img");
+            img_tag3.src = "/views/image/dummy-img.png";
+            img_tag3.setAttribute("class", "imgdum");
+
+            var name_course1 = document.createElement("a");
+            name_course1.setAttribute("class", "textnamecourse");
+            name_course1.setAttribute("href", "#");
+            text1 = document.createTextNode("Network&Security");//name course
+            name_course1.appendChild(text1);
+
+            var name_course2 = document.createElement("a");
+            name_course2.setAttribute("class", "textnamecourse");
+            name_course2.setAttribute("href", "#");
+            text2 = document.createTextNode("Network&Security");//name course
+            name_course2.appendChild(text2);
+
+            var name_course3 = document.createElement("a");
+            name_course3.setAttribute("class", "textnamecourse");
+            name_course3.setAttribute("href", "#");
+            text3 = document.createTextNode("Network&Security");//name course
+            name_course3.appendChild(text3);
+
+            img_br1 = document.createElement("br");
+            img_br2 = document.createElement("br");
+            img_br3 = document.createElement("br");
+            img_br4 = document.createElement("br");
+            img_br5 = document.createElement("br");
+            img_br6 = document.createElement("br");
+
+            item1_div.appendChild(img_tag1);
+            item2_div.appendChild(img_tag2);
+            item3_div.appendChild(img_tag3);
+
+            item1_div.appendChild(img_br1);
+            item1_div.appendChild(img_br2);
+
+            item2_div.appendChild(img_br3);
+            item2_div.appendChild(img_br4);
+
+            item3_div.appendChild(img_br5);
+            item3_div.appendChild(img_br6);
+
+            item1_div.appendChild(name_course1);
+            item2_div.appendChild(name_course2);
+            item3_div.appendChild(name_course3);
+
+            line_div.appendChild(item1_div);
+            line_div.appendChild(item2_div);
+            line_div.appendChild(item3_div);
+
+            var white_box = document.getElementById("box");
+            white_box.appendChild(line_div);
         }
     </script>
 </body>
