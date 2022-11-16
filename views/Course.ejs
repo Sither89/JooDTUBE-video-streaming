@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+<script src="course_db.js"></script>
 
-<body>
+<body onload="showCourse()">
     <div class="TabBar">
         <header>
             <div class="logo">
@@ -22,7 +23,7 @@
                 <ul class="nav_links">
                     <li><a href="/" style="margin: 10px">HOME</a></li>
                     <li><a href="/course">Courses</a></li>
-                    <li><a href="#">Upload</a></li>
+                    <li><a href="/upload_vdo">Upload</a></li>
                     <div class="dropdown">
                         <button onclick="myFunction()" class="dropbtn">My Profile</button>
                         <div id="myDropdown" class="dropdown-content">
@@ -78,7 +79,6 @@
             <div class="item1">
                 <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
                 <a class="textnamevdo" href="##">Ep3 </a>
-
             </div>
         </div>
         <div class="flex-container" style="margin-top: 7%;">
@@ -122,6 +122,8 @@
                 }
             }
         }
+
+        
     </script>
 </body>
 

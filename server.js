@@ -1,8 +1,6 @@
 var express = require("express");
 var app = express();
 var http = require('http').createServer(app);
-//var bodyParser = require("body-parser");
-
 
 
 ////////////////////////////////////////////
@@ -58,6 +56,9 @@ http.listen(9090, function (req, res) {
   /////////////////////////////////////
   /////////////////////////////////////
 
+  
+
+
 
   app.get("/login", function (req, res) {
     res.render("login");
@@ -83,10 +84,11 @@ http.listen(9090, function (req, res) {
         if (req.body.username === item.Email && val === 0) {
           if (req.body.password === item.password && val === 0) {
             if (item.Role == "Admin") {
-              res.redirect('/course?' + item._id)
+              res.redirect('/course?' +'user='+ item._id)
               val = 1;
             }
             if (item.Role == "User") {
+
               res.redirect('/course_student?' + item._id)
               val = 1;
             }
@@ -183,8 +185,18 @@ http.listen(9090, function (req, res) {
     destination: function (req, file, callback) {
       callback(null, './videos');
     },
+    fileFilter: (req, file, cb) => {
+      if (file.mimetype == "video/mp4" ) {
+        cb(null, true);
+      } else {
+        cb(null, false);
+        return cb(new Error('Only .mp4 format allowed!'));
+      }
+    }
+    ,
     filename: function (req, file, callback) {
-      callback(null, file.originalname);
+      console.log(file.mimetype);
+      callback(null, "EP1111111" + ".mp4" );
     }
   });
 
@@ -201,8 +213,13 @@ http.listen(9090, function (req, res) {
   });
 
 
-  app.get("/course", function (req, res) {
-    res.render("Course");
+  app.get("/course", async function (req, res) {
+    let user_query = req.query.user;
+    console.log(user_query);
+
+    // let articles = await Article.findAll().paginate({user: user_query}).exec();
+
+    res.render("Course",{user : user_query});
   });
   app.get("/course_guest", function (req, res) {
     res.render("Course_guest");
