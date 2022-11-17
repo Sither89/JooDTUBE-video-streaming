@@ -40,41 +40,40 @@
     </header>
   </div><br><br>
 
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-md-10 mx-auto">
-        <div class="card card-body">
+      <div class="col-md-10">
+        <div class="card card-body" style="margin-top:100px ; margin-left: 600px; border-radius: 20px;">
           <h1>Upload a video</h1>
           <form action="/upload-vdo" method="post" enctype="multipart/form-data">
             <div class="clearfix">
-              <div class="box1" style="background-color:#E6E6E6">
+              <div class="box1" style="background-color:#E6E6E6; margin-left: 30%;">
                 <img src="https://media.discordapp.net/attachments/1013480789062713488/1022228434132422746/upload_1.png"
                   class="Play" style="display: block; margin-left: auto; margin-right: auto; margin-top: 30px; ">
                 <div class="Text1">
                   <label  style="color:black ;">Click to upload video</label><br>
                   <input type="file" name="video" accept="video/*" required><br>
-
                 </div>
               </div>
 
 
             </div>
 
-            <div class="insidebox">
+            <div class="insidebox " style="margin-left: 29%;">
               <h3> Title your assets :</h3>
-              <input type="text" name="title" required>
+              <input type="text" name="title" required style="width: 550px;">
 
               <h3> Description :</h3>
-              <input type="text" name="description" required>
+              <input type="text" name="description" required style="width: 550px;">
 
               <h3> Tags :</h3>
-              <input type="text" name="tag" required>
+              <input type="text" name="tag" required style="width: 550px;">
 
 
 
               <h3>Course :</h3>
 
-              <select name="course" id="Categories" required>
+              <select name="course" id="Categories" required style="width: 550px;">
                 <option value="">Plese select course</option>
                 <option value="Mobile develop">Mobile develop</option>
                 <option value="Web application Javascript">Web application Javascript</option>
@@ -83,7 +82,7 @@
               <br><br>
 
               
-                  <input type="submit" class="fa-upload" style="float: right; width: 25%;" value="upload" />
+                  <input type="submit" class="fa-upload" style=" width: 25%; margin-left: 425px;" value="upload" />
             </div>
           </form>
 
