@@ -51,7 +51,7 @@
                 <div class="inputbox5" >
                     <input type="password" placeholder="Password" name="password" id="password" required>
                     <a class="toggle-password" id="toggle-password-button" >
-                    
+
                     </a>
 
                 </div>
@@ -59,17 +59,37 @@
                     <input type="password" placeholder="Confirm Password" name="con_password" id="con_password"
                         required>
                     <a class="toggle-password" id="toggle-password-button">
-                        
+
                     </a>
 
                 </div>
-                <button class="submit buttonReg">Register</button>
+
+                <button class="submit buttonReg" id="btnRegister" onclick="check()">Register</button>
         </form>
+        <div id="status" style="font-size: 0;">
+
+        </div>
     </div>
 
 
     </div>
     </div>
+    <script>
+        function check() {
+            let fname = document.getElementById('fname').value;
+            let lname = document.getElementById('lname').value;
+            let Username = document.getElementById('Username').value;
+            let Email = document.getElementById('Email').value;
+            let password = document.getElementById('password').value;
+            let con_password = document.getElementById('con_password').value;
+            if (fname == "" || lname == "" || Username == "" || Email == "" || password == "" || con_password == "") {
+                document.getElementById('status').innerHTML = "request";
+            } else {
+                document.getElementById('status').innerHTML = "";
+                document.getElementById('submitForm').submit();
+            }
+        }
+    </script>
     <script>
         const toggleButton = document.querySelector('#toggle-password-button');
         const passwordField = document.querySelector('#password');
@@ -93,7 +113,7 @@
             isPasswordHidden = !isPasswordHidden;
         });
     </script>
-    
+
 </body>
 
 </html>
