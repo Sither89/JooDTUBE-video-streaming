@@ -13,15 +13,16 @@
 
 </head>
 <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <body>
   <div class="TabBar">
     <header>
       <div class="logo">
         <a href="/" id="logo"><img href="/"
-                src="https://media.discordapp.net/attachments/1013480789062713488/1022162140867596410/unknown.png"
-                width="150" height="50"></a>
-    </div>
+            src="https://media.discordapp.net/attachments/1013480789062713488/1022162140867596410/unknown.png"
+            width="150" height="50"></a>
+      </div>
       </form>
       <nav>
         <ul class="nav_links">
@@ -51,7 +52,7 @@
                 <img src="https://media.discordapp.net/attachments/1013480789062713488/1022228434132422746/upload_1.png"
                   class="Play" style="display: block; margin-left: auto; margin-right: auto; margin-top: 30px; ">
                 <div class="Text1">
-                  <label  style="color:black ;">Click to upload video</label><br>
+                  <label style="color:black ;">Click to upload video</label><br>
                   <input type="file" name="video" accept="video/*" required><br>
                 </div>
               </div>
@@ -81,8 +82,20 @@
               </select>
               <br><br>
 
+<<<<<<< HEAD
               
                   <input type="submit" class="fa-upload" style=" width: 25%; margin-left: 425px;" value="upload" />
+=======
+              <% if(success !='' ) {%>
+                <div class="alert alert-success">
+                  <strong>
+                    <%= success %>
+                  </strong>
+                </div>
+
+                <% } %>
+                  <input type="submit" class="fa-upload" style="float: right; width: 25%;" value="upload" />
+>>>>>>> 89fba7adc58c49dd162fafbb8bf4ed2704083ea5
             </div>
           </form>
 
