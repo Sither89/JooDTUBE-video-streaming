@@ -128,13 +128,9 @@ http.listen(9090, function (req, res) {
       Role: "User"
     });
     contact.save(function (err) {
-
       if (err) {
         throw err;
-
-
       } else {
-
         res.render("login");
       }
     });
@@ -171,29 +167,32 @@ http.listen(9090, function (req, res) {
     res.render("Upload_video", { success: '' });
   });
 
-  
+
   const contactVideoSchema = {
     Title: String,
-    describe: String,
+    Describe: String,
     Tags: String,
     Course: String,
   };
 
-  const contractVideo = mongoose.model("videos", contactSchema);
+  const contractVideo = mongoose.model("videos", contactVideoSchema);
 
   app.post('/upload-vdo', function (req, res) {
     upload(req, res, function (err) {
+      console.log(req.body)
       const contactVideo = new contractVideo({
         Title: req.body.title,
         Describe: req.body.describe,
         Tags: req.body.tags,
         Course: req.body.course,
+      });    
+      contactVideo.save(function (err) {
+        if (err) {
+          throw err;
+        } else {
+          res.render('Upload_video', { success: 'Uploaded Video Successfully' });
+        }
       });
-      if (err) {
-        console.log(err)
-        return res.end("Error uploading file.");
-      }
-      res.render('Upload_video', { success: 'Uploaded Video Successfully' });
     });
   });
 
@@ -208,7 +207,7 @@ http.listen(9090, function (req, res) {
 
   var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-      callback(null, './videos');
+      callback(null, './videos/'+ '');
     },
     fileFilter: (req, file, cb) => {
       if (file.mimetype == "video/mp4") {
@@ -219,8 +218,7 @@ http.listen(9090, function (req, res) {
       }
     },
     filename: function (req, file, callback) {
-      console.log(file.mimetype);
-      callback(null, "EP1111111" + ".mp4");
+      callback(null, file.originalname + ".mp4");
     }
   });
 
@@ -231,11 +229,9 @@ http.listen(9090, function (req, res) {
     const client = new MongoClient(url);
     await client.connect();
     let user_query = req.query.user;
-    let count = 0 ;
     console.log(user_query);
     const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
-    console.log(Course);
-    res.render("Course",{Course : Course ,Count : count});
+    res.render("Course",{Course : Course});
   });
 
   app.get("/course_guest", function (req, res) {
