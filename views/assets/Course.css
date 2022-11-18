@@ -286,11 +286,11 @@ select{
 
 .white-box{
   margin: 0 auto;
-  width: 1500px;
-  height: 1000px ;
+  width: 80%;
   margin-top: 5%;
   background: #FFFFFF;
   border-radius: 30px;
+  margin-bottom: 5%;
 }
 .dropdown2{
   display: flex;
@@ -299,7 +299,8 @@ select{
   display: flex;
   height: 33%;
   width: 100%;
-  justify-content: center;
+  padding-left: 5.2%;
+  justify-content: left;
 }
 .flex-container > div {
   background-color: #F8F8F8;
@@ -312,8 +313,9 @@ select{
 }
 .item1{
   margin-left: 5%;
+  padding-bottom: 2%;
 }
-.textnamevdo{
+.textnamecourse{
   color: black;
   padding-top: 100px;
   

@@ -24,7 +24,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 10%;
+    padding: 38px 10%;
+    
 }
 
 .nav_links {
@@ -247,6 +248,7 @@ h2 {
     will-change: transform;
     margin-top: 2%;
     margin-left: 20%;
+    border: none;
 }
 
 .buttonReg:disabled {
@@ -255,8 +257,7 @@ h2 {
 
 .buttonReg:hover {
     color: #fff;
-    background-color: #00889a;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    background-color: #F2B04C;
     transform: translateY(-2px);
 }
 
@@ -297,15 +298,62 @@ input {
 }
 
 .toggle-password img{
-    margin-top: -10%;
+    
     margin-left: 94%;
     width: 4%;
+   
 }
 
 .hide {
     display: none;
+
 }
 
 .show {
     display: block;
+}
+.input-control input:focus {
+    outline: 0;
+}
+
+.input-control.success input {
+    border-color: #09c372;
+}
+
+.input-control.error input {
+    border-color: #ff3860;
+}
+
+.input-control .error {
+    color: #ff3860;
+    font-size: 14px;
+    margin-left: 20px;
+    margin-top: 5px;
+    height: 13px;
+}
+.inputbox4 i{
+    position: absolute;
+}
+.inputbox6 i{
+    position: absolute;
+}
+.icon{
+    margin-top: 18px;
+    margin-left: 18px;
+
+}
+
+.inputbox3 i{
+    position: absolute;
+   
+}
+
+.inputbox5 i{
+    position: absolute;
+}
+input[type=text]{
+    padding-left: 32px;
+}
+input[type=password]{
+    padding-left: 32px;
 }
