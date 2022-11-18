@@ -50,6 +50,8 @@ http.listen(9090, function (req, res) {
     Role: String
   };
 
+
+
   const Contact = mongoose.model("customers", contactSchema);
 
 
@@ -107,9 +109,7 @@ http.listen(9090, function (req, res) {
     res.render("Watch_vdo");
   });
 
-  app.get("/upload_vdo", function (req, res) {
-    res.render("Upload_video", { success: '' });
-  });
+
 
   app.get("/register", function (req, res) {
     res.render("Register");
@@ -166,6 +166,38 @@ http.listen(9090, function (req, res) {
     });
   });
 
+
+  app.get("/upload_vdo", function (req, res) {
+    res.render("Upload_video", { success: '' });
+  });
+
+  
+  const contactVideoSchema = {
+    Title: String,
+    describe: String,
+    Tags: String,
+    Course: String,
+  };
+
+  const contractVideo = mongoose.model("videos", contactSchema);
+
+  app.post('/upload-vdo', function (req, res) {
+    upload(req, res, function (err) {
+      const contactVideo = new contractVideo({
+        Title: req.body.title,
+        Describe: req.body.describe,
+        Tags: req.body.tags,
+        Course: req.body.course,
+      });
+      if (err) {
+        console.log(err)
+        return res.end("Error uploading file.");
+      }
+      res.render('Upload_video', { success: 'Uploaded Video Successfully' });
+    });
+  });
+
+  
   app.use(session({
     secret: 'upload',
     saveUninitialized: true,
@@ -194,15 +226,6 @@ http.listen(9090, function (req, res) {
 
   var upload = multer({ storage: storage }).single('video');
 
-  app.post('/upload-vdo', function (req, res) {
-    upload(req, res, function (err) {
-      if (err) {
-        console.log(err)
-        return res.end("Error uploading file.");
-      }
-      res.render('Upload_video', { success: 'Uploaded Video Successfully' });
-    });
-  });
 
   app.get("/course", async function (req, res) {
     const client = new MongoClient(url);
