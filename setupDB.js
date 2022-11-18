@@ -30,17 +30,16 @@ MongoClient.connect(url, function (err, db) {
 
   const course = {
     id_course: "String",
-    name: "AWS",
+    name: "AWS_DEPOLY&CLOUD",
     description: "Guide",
     Teacher: "9Arm",
   };
 
-  const vdo = {
-    UpFile: "MP4",
-    Title_your_assets: "CS360 Clip #1",
-    Description: "About AWS seesion",
+  const videos = {
+    Title: "CS360 Clip #1",
+    Describe: "About AWS seesion",
     Tags: "AWS",
-    Course: "Deployment for AWS"
+    Course: "AWS_DEPOLY&CLOUD"
   };
 
 
@@ -59,7 +58,7 @@ MongoClient.connect(url, function (err, db) {
     // console.log("1 document inserted");
     db.close();
   });
-  dbo.collection("upload").insertOne(vdo, function (err, res) {
+  dbo.collection("videos").insertOne(videos, function (err, res) {
     if (err) throw err;
     // console.log("1 document inserted");
     db.close();
