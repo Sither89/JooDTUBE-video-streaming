@@ -229,6 +229,7 @@ http.listen(9090, function (req, res) {
     const client = new MongoClient(url);
     await client.connect();
     let user_query = req.query.user;
+    console.log(user_query);
     const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
     res.render("Course",{Course : Course});
   });

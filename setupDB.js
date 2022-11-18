@@ -28,22 +28,30 @@ MongoClient.connect(url, function (err, db) {
     Role: "User"
   };
 
-  const course = [{
+   const course = [{
     id_course: "1",
-    name: "AWS_DEPOLY&CLOUD",
-    description: "Guide",
-    Teacher: "9Arm",
-  },{
-    id_course: "2",
     name: "Data_Structure",
     description: "Guide",
     Teacher: "GAB",
   },{
-    id_course: "3",
+    id_course: "2",
     name: "HCI",
     description: "Guide",
     Teacher: "KANOM",
+  },{
+    id_course: "3",
+    name: "AWS",
+    description: "Guide",
+    Teacher: "NOON",
+  },{
+    id_course: "4",
+    name: "Require",
+    description: "Guide",
+    Teacher: "9Arm",
   }];
+
+  
+
 
 
   const videos = [{
@@ -65,23 +73,18 @@ MongoClient.connect(url, function (err, db) {
 
   dbo.collection("customers").insertOne(Admin, function (err, res) {
     if (err) throw err;
-    // console.log("1 document inserted");
-    db.close();
   });
   dbo.collection("customers").insertOne(User, function (err, res) {
     if (err) throw err;
-    // console.log("1 document inserted");
-    db.close();
   });
   dbo.collection("course").insertMany(course, function (err, res) {
     if (err) throw err;
-    // console.log("1 document inserted");
     db.close();
   });
   dbo.collection("videos").insertMany(videos, function (err, res) {
     if (err) throw err;
-    // console.log("1 document inserted");
     db.close();
   });
 
+  console.log("setup database success!");
 });
