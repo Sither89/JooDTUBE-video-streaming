@@ -29,7 +29,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const { Int32 } = require("mongodb");
 
-const filePath = "videos/SampleVideo_1280x720_1mb.mp4";
+const filePath = "videos\2022-11-09 00-10-33.mp4";
 
 
 http.listen(9090, function (req, res) {
@@ -71,9 +71,6 @@ http.listen(9090, function (req, res) {
       const client = new MongoClient(url);
       await client.connect();
       const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
-
- 
-
 
       const item = await Contact.find({})
       const salt = 10;
@@ -173,6 +170,7 @@ http.listen(9090, function (req, res) {
     Describe: String,
     Tags: String,
     Course: String,
+    filePathVideo : String
   };
 
   const contractVideo = mongoose.model("videos", contactVideoSchema);
@@ -180,11 +178,13 @@ http.listen(9090, function (req, res) {
   app.post('/upload-vdo', function (req, res) {
     upload(req, res, function (err) {
       console.log(req.body)
+      console.log(req.file.path)
       const contactVideo = new contractVideo({
         Title: req.body.title,
         Describe: req.body.describe,
         Tags: req.body.tags,
         Course: req.body.course,
+        filePathVideo : req.file.path
       });    
       contactVideo.save(function (err) {
         if (err) {
@@ -207,7 +207,7 @@ http.listen(9090, function (req, res) {
 
   var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-      callback(null, './videos/'+ '');
+      callback(null, './videos/');
     },
     fileFilter: (req, file, cb) => {
       if (file.mimetype == "video/mp4") {
@@ -218,7 +218,7 @@ http.listen(9090, function (req, res) {
       }
     },
     filename: function (req, file, callback) {
-      callback(null, file.originalname + ".mp4");
+      callback(null, file.originalname);
     }
   });
 

@@ -68,7 +68,6 @@ button:hover {
 .fa-upload {
   font-family: monospace, sans-serif;
   font-size: x-large;
-  
   padding: 9px ;
   background-color: #F0AE00;
   cursor: pointer;
@@ -253,10 +252,13 @@ select {
   box-sizing: border-box;
 }
 
+.success{
+  width: 100%;
+}
+
 .insidebox {
   margin-top: 400px;
   margin-left: 25%;
   display: block;
-  width: 500px;
-
+  width: 50%;
 }
