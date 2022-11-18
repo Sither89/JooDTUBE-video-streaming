@@ -40,8 +40,7 @@ http.listen(9090, function (req, res) {
   });
 
 
-  /////////////////////////////////////
-  /////////////////////////////////////
+
   const contactSchema = {
     fname: String,
     lname: String,
@@ -53,29 +52,25 @@ http.listen(9090, function (req, res) {
 
   const Contact = mongoose.model("customers", contactSchema);
 
-/////////////////////////////////////
-/////////////////////////////////////
-  
+
 
   app.get("/login", function (req, res) {
     res.render("login");
   });
 
 
-  /////////////////////////////////////
-  /////////////////////////////////////
   app.post("/login", async function (req, res) {
     //console.log(req.body)
     MongoClient.connect(url, async function (err, db) {
       var val = 0;
 
 
-      /////////////////////////////////////////
+  
       const client = new MongoClient(url);
       await client.connect();
       const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
 
-      /////////////////////////////////////////
+ 
 
 
       const item = await Contact.find({})
@@ -106,8 +101,7 @@ http.listen(9090, function (req, res) {
       }
     });
   });
-  /////////////////////////////////////
-  /////////////////////////////////////
+
 
   app.get("/watch_vdo", function (req, res) {
     res.render("Watch_vdo");
@@ -121,8 +115,7 @@ http.listen(9090, function (req, res) {
     res.render("Register");
   });
 
-  /////////////////////////////////////
-  /////////////////////////////////////
+ 
   app.post("/register", async function (req, res) {
     const saltRounds = 10;
     const hashp = bcrypt.hashSync(req.body.password, saltRounds);
@@ -146,8 +139,7 @@ http.listen(9090, function (req, res) {
       }
     });
   });
-  /////////////////////////////////////
-  /////////////////////////////////////
+
 
 
   app.get("/works-in-chrome", (req, res) => {
@@ -213,18 +205,19 @@ http.listen(9090, function (req, res) {
   });
 
   app.get("/course", async function (req, res) {
+    const client = new MongoClient(url);
+    await client.connect();
     let user_query = req.query.user;
     console.log(user_query);
-    function connectDB(){
-      
-    }
-    // let articles = await Article.findAll().paginate({user: user_query}).exec();
-
-    res.render("Course",{user : user_query});
+    const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
+    console.log(Course);
+    res.render("Course",{Course : Course});
   });
+
   app.get("/course_guest", function (req, res) {
     res.render("Course_guest");
   });
+
   app.get("/course_student", function (req, res) {
     res.render("Course_student");
   });
