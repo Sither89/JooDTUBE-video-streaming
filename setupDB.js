@@ -14,7 +14,7 @@ MongoClient.connect(url, function (err, db) {
     fname: "Admin",
     lname: "Admin",
     Username: "Admin",
-    Email: "admin",
+    Email: "admin@gmail.com",
     password: "$2a$10$93obybBMKt9XWaiXZ7GmJeXpcuyeVgWcLK7CRoUEZxCXGwRYlu70O",
     Role: "Admin"
   };
@@ -23,25 +23,45 @@ MongoClient.connect(url, function (err, db) {
     fname: "User",
     lname: "User",
     Username: "User",
-    Email: "user",
+    Email: "user@gmail.com",
     password: "$2a$10$Yv2T0rLxvbWxHSDPLHBWduIvQlEte8lhgvFInKP9W8TtcpOPhHl9O",
     Role: "User"
   };
 
-  const course = {
-    id_course: "String",
+  const course = [{
+    id_course: "1",
     name: "AWS_DEPOLY&CLOUD",
     description: "Guide",
     Teacher: "9Arm",
-  };
+  },{
+    id_course: "2",
+    name: "Data_Structure",
+    description: "Guide",
+    Teacher: "GAB",
+  },{
+    id_course: "3",
+    name: "HCI",
+    description: "Guide",
+    Teacher: "KANOM",
+  }];
 
-  const videos = {
+
+  const videos = [{
     Title: "CS360 Clip #1",
     Describe: "About AWS seesion",
     Tags: "AWS",
     Course: "AWS_DEPOLY&CLOUD"
-  };
-
+  },{
+    Title: "Start&Overview",
+    Describe: "About AWS seesion",
+    Tags: "AWS",
+    Course: "AWS_DEPOLY&CLOUD"
+  },{
+    Title: "Start&Overviewsad",
+    Describe: "About AWS seesion",
+    Tags: "AWS",
+    Course: "AWS_DEPOLY&CLOUD"
+  }];
 
   dbo.collection("customers").insertOne(Admin, function (err, res) {
     if (err) throw err;
@@ -53,14 +73,15 @@ MongoClient.connect(url, function (err, db) {
     // console.log("1 document inserted");
     db.close();
   });
-  dbo.collection("course").insertOne(course, function (err, res) {
+  dbo.collection("course").insertMany(course, function (err, res) {
     if (err) throw err;
     // console.log("1 document inserted");
     db.close();
   });
-  dbo.collection("videos").insertOne(videos, function (err, res) {
+  dbo.collection("videos").insertMany(videos, function (err, res) {
     if (err) throw err;
     // console.log("1 document inserted");
     db.close();
   });
+
 });
