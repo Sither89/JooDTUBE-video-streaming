@@ -231,10 +231,11 @@ http.listen(9090, function (req, res) {
     const client = new MongoClient(url);
     await client.connect();
     let user_query = req.query.user;
+    let count = 0 ;
     console.log(user_query);
     const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
     console.log(Course);
-    res.render("Course",{Course : Course});
+    res.render("Course",{Course : Course ,Count : count});
   });
 
   app.get("/course_guest", function (req, res) {
