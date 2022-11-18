@@ -28,12 +28,31 @@ MongoClient.connect(url, function (err, db) {
     Role: "User"
   };
 
-  const course = {
-    id_course: "String",
-    name: "AWS_DEPOLY&CLOUD",
+  const course = [{
+    id_course: "1",
+    name: "Data_Structure",
     description: "Guide",
-    Teacher: "9Arm",
-  };
+    Teacher: "GAB",
+  },{
+    id_course: "2",
+    name: "HCI",
+    description: "Guide",
+    Teacher: "KANOM",
+  },{
+    id_course: "3",
+    name: "AWS",
+    description: "Guide",
+    Teacher: "NOON",
+  },{
+    id_course: "4",
+    name: "Require",
+    description: "Guide",
+    Teacher: "MANGO",
+  }];
+
+  
+
+
 
   const videos = {
     Title: "CS360 Clip #1",
@@ -45,22 +64,18 @@ MongoClient.connect(url, function (err, db) {
 
   dbo.collection("customers").insertOne(Admin, function (err, res) {
     if (err) throw err;
-    // console.log("1 document inserted");
-    db.close();
   });
   dbo.collection("customers").insertOne(User, function (err, res) {
     if (err) throw err;
-    // console.log("1 document inserted");
-    db.close();
   });
-  dbo.collection("course").insertOne(course, function (err, res) {
+  dbo.collection("course").insertMany(course, function (err, res) {
     if (err) throw err;
-    // console.log("1 document inserted");
     db.close();
   });
   dbo.collection("videos").insertOne(videos, function (err, res) {
     if (err) throw err;
-    // console.log("1 document inserted");
     db.close();
   });
+
+  console.log("setup database success!");
 });

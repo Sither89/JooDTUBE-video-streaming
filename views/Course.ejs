@@ -66,7 +66,7 @@
     </div>
     <div class="white-box" id="box">
         <h2 style="padding: 4%; font-family: monospace, sans-serif;">Courses</h2>
-        <div class="flex-container" id="line1">
+        <!-- <div class="flex-container" id="line1">
             <div class="item1" id="11">
                 <img class="imgdum" src="/views/image/aws_logo_smile_1200x630.png"><br><br>
                 <a class="textnamecourse" href="watch_vdo">AWS_DEPLOY&CLOUD</a>
@@ -90,15 +90,48 @@
                 <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
                 <a class="textnamecourse" href="###">Ep5 </a>
             </div>
-        </div>
-        <p><%=Course[0].name%></p>
-        <p><%=Course.length%></p>
-        <% Course.forEach(Course => { %>
-            <div class="item1">
+        </div> -->
+       
+            
+        <% for(var i=0; i < Course.length ; i) { %>
+           
+            <% if(i == 0) { %>
+                <% console.log("in loop") %>
+                <div class="flex-container" id="line1">
+            <% }else if(i % 3 == 0) { %>
+                <div class="flex-container" id="line1" style="margin-top: 7%;">
+             <%}%>        
+           <% if(i < Course.length) {%>
+                <div class="item1" id="11">
                 <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamecourse" href="###"><%= Course.name %></a>
+                <a class="textnamecourse" href="###"><%= Course[i].name %></a>
             </div>
-        <% }); %>
+        <% i++ %> 
+            <%}%>
+
+            <% if(i < Course.length) {%>
+                <div class="item1" id="11">
+                <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
+                <a class="textnamecourse" href="###"><%= Course[i].name %></a>
+            </div>
+          <% i++ %> 
+              <%}%>
+
+            <% if(i < Course.length) {%>
+                <div class="item1" id="11">
+                <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
+                <a class="textnamecourse" href="###"><%= Course[i].name %></a>
+            </div>
+          <% i++ %> 
+              <%}%>
+
+        <% if(i % 3 == 0) { %>   
+            
+            </div>
+        <%}%>
+        
+    <% }; %>
+       
     </div>
 
 
