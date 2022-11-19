@@ -13,7 +13,9 @@
     <div class="TabBar">
         <header>
             <div class="logo">
-                <a href="/" id="logo"><img href="/" src="https://media.discordapp.net/attachments/1013480789062713488/1022162140867596410/unknown.png"   width="150" height="50"></a>
+                <a href="/" id="logo"><img href="/"
+                        src="https://media.discordapp.net/attachments/1013480789062713488/1022162140867596410/unknown.png"
+                        width="150" height="50"></a>
             </div>
             </form>
             <nav>
@@ -56,63 +58,63 @@
     </div>
     <div class="white-box">
         <h2 style="padding: 4%; font-family: monospace, sans-serif;">Courses</h2>
-        <div class="flex-container">
-            <div class="item1">
-                <img class="imgdum" src="/views/image/aws_logo_smile_1200x630.png"><br><br>
-                <a class="textnamecourse" href="###">Ep1 </a>
-            </div>
-            <div class="item1">
-                <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamecourse" href="###">Ep2 </a>
-            </div>
-            <div class="item1">
-                <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamecourse" href="##">Ep3 </a>
 
-            </div>
-        </div>
-        <div class="flex-container" style="margin-top: 7%;">
-            <div class="item1">
-                <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamecourse" href="###">Ep4 </a>
-            </div>
-            <div class="item1">
-                <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamecourse" href="###">Ep5 </a>
-            </div>
-            <div class="item1">
-                <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamecourse" href="##">Ep6 </a>
+        <% for(var i=0; i < Course.length ; i) { %>
 
-            </div>
-        </div>
-
-
-    </div>
-
-
-
-    <script>
-        /* When the user clicks on the button, 
-        toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropbtn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
+            <% if(i==0) { %>
+                <div class="flex-container" id="line1">
+                    <% }else if(i % 3==0) { %>
+                        <div class="flex-container" id="line1" style="margin-top: 7%;">
+                            <%}%>
+                                <% if(i < Course.length) {%>
+                                    <div class="item1" id="11">
+                                        <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
+                                        <a class="textnamecourse" href="###">
+                                            <%= Course[i].name %>
+                                        </a>
+                                    </div>
+                                    <% i++ %>
+                                <%}%>
+                                <% if(i < Course.length) {%>
+                                    <div class="item1" id="11">
+                                        <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
+                                        <a class="textnamecourse" href="###"><%= Course[i].name %></a>
+                                    </div>
+                                    <% i++ %>
+                                <%}%>
+                                <% if(i < Course.length) {%>
+                                    <div class="item1" id="11">
+                                        <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
+                                        <a class="textnamecourse" href="###"><%= Course[i].name %></a>
+                                    </div>
+                                    <% i++ %>
+                                <%}%>
+                    <% if(i % 3==0) { %>
+                        </div>
+                    <%}%>
+            <% }; %>
+                </div>
+                <script>
+                    /* When the user clicks on the button, 
+                    toggle between hiding and showing the dropdown content */
+                    function myFunction() {
+                        document.getElementById("myDropdown").classList.toggle("show");
                     }
-                }
-            }
-        }
-    </script>
+
+                    // Close the dropdown if the user clicks outside of it
+                    window.onclick = function (event) {
+                        if (!event.target.matches('.dropbtn')) {
+                            var dropdowns = document.getElementsByClassName("dropdown-content");
+                            var i;
+                            for (i = 0; i < dropdowns.length; i++) {
+                                var openDropdown = dropdowns[i];
+                                if (openDropdown.classList.contains('show')) {
+                                    openDropdown.classList.remove('show');
+                                }
+                            }
+                        }
+                    }
+                </script>
 </body>
 
 </html>
