@@ -65,28 +65,24 @@ http.listen(9090, function (req, res) {
     //console.log(req.body)
     MongoClient.connect(url, async function (err, db) {
       var val = 0;
-
-
-  
       const client = new MongoClient(url);
       await client.connect();
-      const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
 
       const item = await Contact.find({})
       const salt = 10;
       const hashpass = bcrypt.hashSync(req.body.password, salt);
       item.forEach(item => {
-      check = bcrypt.compareSync (req.body.password , item.password);
-        if(req.body.username === item.Email && val === 0){
-          if(check == true){
-            
-            if(item.Role == "Admin"){
-                res.redirect('/course?'+"user="+ item._id)
-               val = 1 ;
+        check = bcrypt.compareSync(req.body.password, item.password);
+        if (req.body.username === item.Email && val === 0) {
+          if (check == true) {
+
+            if (item.Role == "Admin") {
+              res.redirect('/course?' + "user=" + item._id)
+              val = 1;
             }
-            if(item.Role == "User"){
-              res.redirect('/course?'+"user="+ item._id)
-              val = 1 ;
+            if (item.Role == "User") {
+              res.redirect('/course_student?' + "user=" + item._id)
+              val = 1;
             }
           } else {
             val = 0;
@@ -102,8 +98,29 @@ http.listen(9090, function (req, res) {
   });
 
 
-  app.get("/watch_vdo", function (req, res) {
-    res.render("Watch_vdo");
+  app.get("/watch_vdo", async function (req, res) {
+    const client = new MongoClient(url);
+    await client.connect();
+    let user_query = req.query.user;
+    console.log(user_query);
+    const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
+    check = 0
+    userDB.forEach(user => {
+      console.log(user._id)
+      if (user._id == user_query) {
+        if (user.Role == "Admin") {
+          res.render("Watch_vdo", { user: user_query , course : "course"});
+          check = 1;
+        }
+        if (user.Role == "User") {
+          res.render("Watch_vdo", { user: user_query , course : "course_student"});
+          check = 1;
+        }
+      }
+    });
+    if (check == 0) {
+      res.render("login");
+    }
   });
 
 
@@ -112,7 +129,7 @@ http.listen(9090, function (req, res) {
     res.render("Register");
   });
 
- 
+
   app.post("/register", async function (req, res) {
     const saltRounds = 10;
     const hashp = bcrypt.hashSync(req.body.password, saltRounds);
@@ -160,7 +177,22 @@ http.listen(9090, function (req, res) {
   });
 
 
-  app.get("/upload_vdo", function (req, res) {
+  app.get("/upload_vdo", async function (req, res) {
+    const client = new MongoClient(url);
+    await client.connect();
+    let user_query = req.query.user;
+    const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
+    check = 0
+    userDB.forEach(user => {
+      if (user._id == user_query) {
+        res.render("Course", { user: user_query });
+        check = 1;
+      }
+    });
+    if (check == 0) {
+      res.redirect("/login");
+    }
+
     res.render("Upload_video", { success: '' });
   });
 
@@ -170,22 +202,20 @@ http.listen(9090, function (req, res) {
     Describe: String,
     Tags: String,
     Course: String,
-    filePathVideo : String
+    filePathVideo: String
   };
 
   const contractVideo = mongoose.model("videos", contactVideoSchema);
 
   app.post('/upload-vdo', function (req, res) {
     upload(req, res, function (err) {
-      console.log(req.body)
-      console.log(req.file.path)
       const contactVideo = new contractVideo({
         Title: req.body.title,
         Describe: req.body.describe,
         Tags: req.body.tags,
         Course: req.body.course,
-        filePathVideo : req.file.path
-      });    
+        filePathVideo: req.file.path
+      });
       contactVideo.save(function (err) {
         if (err) {
           throw err;
@@ -196,7 +226,7 @@ http.listen(9090, function (req, res) {
     });
   });
 
-  
+
   app.use(session({
     secret: 'upload',
     saveUninitialized: true,
@@ -229,18 +259,46 @@ http.listen(9090, function (req, res) {
     const client = new MongoClient(url);
     await client.connect();
     let user_query = req.query.user;
-    console.log(user_query);
     const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
-    res.render("Course",{Course : Course});
+    const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
+    check = 0
+    userDB.forEach(user => {
+      if (user._id == user_query) {
+        res.render("Course", { Course: Course, user: user_query });
+        check = 1;
+      }
+    });
+    if (check == 0) {
+      res.redirect("/login");
+    }
   });
 
-  app.get("/course_guest", function (req, res) {
-    res.render("Course_guest");
+  app.get("/course_student", async function (req, res) {
+    const client = new MongoClient(url);
+    await client.connect();
+    let user_query = req.query.user;
+    const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
+    const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
+    check = 0
+    userDB.forEach(user => {
+      if (user._id == user_query) {
+        res.render("Course_student", { Course: Course, user: user_query });
+        check = 1;
+      }
+    });
+    if (check == 0) {
+      res.redirect("/login");
+    }
   });
 
-  app.get("/course_student", function (req, res) {
-    res.render("Course_student");
+  app.get("/course_guest", async function (req, res) {
+    const client = new MongoClient(url);
+    await client.connect();
+    const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
+    res.render("Course_guest", { Course: Course });
   });
+
+
 
 });
 

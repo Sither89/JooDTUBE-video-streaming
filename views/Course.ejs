@@ -21,8 +21,8 @@
             <nav>
                 <ul class="nav_links">
                     <li><a href="/" style="margin: 10px">Home</a></li>
-                    <li><a href="/course">Courses</a></li>
-                    <li><a href="/upload_vdo">Upload</a></li>
+                    <li><a href="/course?user=<%=user%>">Courses</a></li>
+                    <li><a href="/upload_vdo?user=<%=user%>">Upload</a></li>
                     <div class="dropdown">
                         <button onclick="myFunction()" class="dropbtn">My Profile</button>
                         <div id="myDropdown" class="dropdown-content">
@@ -96,7 +96,6 @@
         <% for(var i=0; i < Course.length ; i) { %>
            
             <% if(i == 0) { %>
-                <% console.log("in loop") %>
                 <div class="flex-container" id="line1">
             <% }else if(i % 3 == 0) { %>
                 <div class="flex-container" id="line1" style="margin-top: 7%;">
@@ -104,7 +103,7 @@
            <% if(i < Course.length) {%>
                 <div class="item1" id="11">
                 <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamecourse" href="###"><%= Course[i].name %></a>
+                <a class="textnamecourse" href="/watch_vdo?user=<%=user%>"><%= Course[i].name %></a>
             </div>
         <% i++ %> 
             <%}%>

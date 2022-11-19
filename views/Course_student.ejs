@@ -21,7 +21,7 @@
             <nav>
                 <ul class="nav_links">
                     <li><a href="/" style="margin: 10px">Home</a></li>
-                    <li><a href="/course">Courses</a></li>
+                    <li><a href="/course_student?user=<%=user%>">Courses</a></li>
                     <div class="dropdown">
                         <button onclick="myFunction()" class="dropbtn">My Profile</button>
                         <div id="myDropdown" class="dropdown-content">
@@ -65,36 +65,43 @@
     </div>
     <div class="white-box">
         <h2 style="padding: 4%; font-family: monospace, sans-serif;">Courses</h2>
-        <div class="flex-container">
-            <div class="item1">
-                <img class="imgdum" src="/views/image/aws_logo_smile_1200x630.png"><br><br>
-                <a class="textnamecourse" href="/watch_vdo">AWS_DEPLOY&CLOUD </a>
-            </div>
-            <div class="item1">
+        <% for(var i=0; i < Course.length ; i) { %>
+           
+            <% if(i == 0) { %>
+                <div class="flex-container" id="line1">
+            <% }else if(i % 3 == 0) { %>
+                <div class="flex-container" id="line1" style="margin-top: 7%;">
+             <%}%>        
+           <% if(i < Course.length) {%>
+                <div class="item1" id="11">
                 <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamecourse" href="###">Ep2 </a>
+                <a class="textnamecourse" href="/watch_vdo?user=<%=user%>"><%= Course[i].name %></a>
             </div>
-            <div class="item1">
-                <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamecourse" href="##">Ep3 </a>
+        <% i++ %> 
+            <%}%>
 
-            </div>
-        </div>
-        <div class="flex-container" style="margin-top: 7%;">
-            <div class="item1">
+            <% if(i < Course.length) {%>
+                <div class="item1" id="11">
                 <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamecourse" href="###">Ep4 </a>
+                <a class="textnamecourse" href="###"><%= Course[i].name %></a>
             </div>
-            <div class="item1">
-                <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamecourse" href="###">Ep5 </a>
-            </div>
-            <div class="item1">
-                <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamecourse" href="##">Ep6 </a>
+          <% i++ %> 
+              <%}%>
 
+            <% if(i < Course.length) {%>
+                <div class="item1" id="11">
+                <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
+                <a class="textnamecourse" href="###"><%= Course[i].name %></a>
             </div>
-        </div>
+          <% i++ %> 
+              <%}%>
+
+        <% if(i % 3 == 0) { %>   
+            
+            </div>
+        <%}%>
+        
+    <% }; %>
 
 
     </div>
