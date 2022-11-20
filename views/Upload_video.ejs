@@ -46,7 +46,7 @@
       <div class="col-md-10 mx-auto">
         <div class="card card-body ">
           <h1>Upload a video</h1>
-          <form action="/upload-vdo" method="post" enctype="multipart/form-data">
+          <form action="/upload-vdo" method="post" enctype="multipart/form-data" id="submitForm">
             <div class="clearfix">
               <div class="box1 " style="background-color:#E6E6E6; margin-left: 26%;">
                 <img src="https://media.discordapp.net/attachments/1013480789062713488/1022228434132422746/upload_1.png"
@@ -61,16 +61,23 @@
 
             </div>
 
-            <div class="insidebox">
+            <d  iv class="insidebox">
               <h3> Title your assets :</h3>
-              <input type="text" name="title" id="title" required >
+              <div class="input-control ">
+                <input type="text" name="title" id="title"  >
+                <div class="error"></div>
+              </div>
 
               <h3> Description :</h3>
-              <input type="text" name="describe" id="describe" required >
-
+              <div class="input-control ">
+                <input type="text" name="describe" id="describe" >
+                <div class="error"></div>
+              </div>
               <h3> Tags :</h3>
-              <input type="text" name="tags" id="tags" required >
-
+              <div class="input-control ">
+                <input type="text" name="tags" id="tags"  >
+               <div class="error"></div>
+              </div>
               <h3>Course :</h3>
               <select name="course" id="course" required >
                 <option value="">Plese select course</option>
@@ -118,7 +125,69 @@
       </div>
     </div>
   </div>
+  <script>
+        
+    const form = document.getElementById('submitForm');
+    const title = document.getElementById('title');
+    const describe = document.getElementById('describe');
+    const tags = document.getElementById('tags');
 
+form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    validateInputs();
+});
+
+const setError = (element, message) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = message;
+    inputControl.classList.add('error');
+    inputControl.classList.remove('success')
+}
+
+const setSuccess = element => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = '';
+    inputControl.classList.add('success');
+    inputControl.classList.remove('error');
+};
+
+const isValidEmail = email => {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+const validateInputs = () => {
+    const titleValue = title.value.trim();
+    const describeValue = describe.value.trim();
+    const tagsValue = tags.value.trim();
+
+    if (titleValue === '') {
+        setError(title, 'Please enter Title');
+    } else {
+        setSuccess(title);
+    }
+
+    if (describeValue === '') {
+        setError(describe, 'Please enter Description');
+    } else {
+        setSuccess(describe);
+    }
+
+    if (tagsValue === '') {
+        setError(tags, 'Please enter Tags');
+    } else {
+        setSuccess(tags);
+    }
+
+
+
+};
+</script>
 
 </body>
 

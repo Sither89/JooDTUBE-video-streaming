@@ -42,14 +42,17 @@
                         data-parsley-errors-messages-disabled="true" novalidate="" _lpchecked="1">
                         <div class="form-group required">
                             <lSabel for="username">Username / Email</lSabel>
-                            <input type="text" class="form-control " id="username" required=""
-                                name="username" value="">
+                            <div class="input-control">
+                                <input type="text" class="form-control " id="username" name="username" value="">
+                                <div class="error"></div>
+                            </div>    
                         </div>
                         <div class="form-group required">
                             <label class="d-flex flex-row align-items-center" for="password">Password</label>
-
-                            <input type="password" class="form-control" required="" id="password" name="password"
-                                value="">
+                            <div class="input-control">
+                                <input type="password" class="form-control"  id="password" name="password" value="">
+                                <div class="error"></div>
+                            </div>    
                         </div>
                         <div class="form-group mt-4 mb-4">
                             <div class="custom-control custom-checkbox">
@@ -77,6 +80,67 @@
         </div>
     </div>
     </div>
+    <script>
+        
+        const form = document.getElementById('submitForm');
+        const fname = document.getElementById('fname');
+        const lname = document.getElementById('lname');
+        const username = document.getElementById('username');
+        const email = document.getElementById('Email');
+        const password = document.getElementById('password');
+        const password2 = document.getElementById('con_password');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+
+        validateInputs();
+    });
+
+    const setError = (element, message) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+
+        errorDisplay.innerText = message;
+        inputControl.classList.add('error');
+        inputControl.classList.remove('success')
+    }
+
+    const setSuccess = element => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+
+        errorDisplay.innerText = '';
+        inputControl.classList.add('success');
+        inputControl.classList.remove('error');
+    };
+
+    const isValidEmail = email => {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    const validateInputs = () => {
+        const usernameValue = username.value.trim();
+        const passwordValue = password.value.trim();
+     
+
+        if (usernameValue === '') {
+            setError(username, 'Please enter Username');
+        } else {
+            setSuccess(username);
+        }
+
+
+        if (passwordValue === '') {
+            setError(password, 'Please enter Password');
+        } else if (passwordValue.length < 8) {
+            setError(password, 'Password must be at least 8 character.')
+        } else {
+            setSuccess(password);
+        }
+
+    };
+    </script>
 </body>
 
 </html>
