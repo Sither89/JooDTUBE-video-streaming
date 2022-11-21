@@ -46,7 +46,7 @@
       <div class="col-md-10 mx-auto">
         <div class="card card-body ">
           <h1>Upload a video</h1>
-          <form action="/upload-vdo" method="post" enctype="multipart/form-data">
+          <form action="/upload-vdo?user=<%=user%>" method="post" enctype="multipart/form-data">
             <div class="clearfix">
               <div class="box1 " style="background-color:#E6E6E6; margin-left: 26%;">
                 <img src="https://media.discordapp.net/attachments/1013480789062713488/1022228434132422746/upload_1.png"
@@ -74,9 +74,12 @@
               <h3>Course :</h3>
               <select name="course" id="course" required >
                 <option value="">Plese select course</option>
+                <!-- <%course.forEach(course => {%>
+                  <option value="<%=course.name%>"><%=course.name%></option>
+                <%})%> -->
                 <option value="Mobile develop">Mobile develop</option>
                 <option value="Web application Javascript">Web application Javascript</option>
-                <option value="Deployment for AWS">Deployment for AWS</option>
+                <option value="AWS_DEPOLY&CLOUD">AWS_DEPOLY&CLOUD</option>
               </select>
               <br><br>
 
