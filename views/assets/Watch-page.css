@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+body{
+    background-color:#EF4B4B;
+    background-size: cover;
+    background-position: center;
+    font-family: monospace, sans-serif;
+}
+li ,a , button{
+    font-family: monospace, sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+}
+.TabBar{
+    color:white;
+}
+.logo{
+    position: absolute;
+    margin-top: 80px;
+    
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+}
+.nav_links{
+    list-style: none;
+    position: absolute;
+    right: 10%;
+}
+.nav_links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+.nav_links li a{
+    transition: all 0.3s ease 0s;
+}
+.nav_links li a:hover{
+    color: #00889a;
+}
+.dropbtn {
+    font-family: monospace, sans-serif;
+    background-color: #F0AE00;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+
+
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #F0AE00;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 100px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 5px 5px;
+    text-decoration: none;
+    display: block;
+    
+  }
+  
+.dropdown a:hover {background-color: #ddd;}
+  
+.show {display: block;}
+
+.whilebox{
+    background-color: white;  
+    width: 1600px;  
+    height: 1000px;
+    margin: 0 auto;
+    margin-top: 100px;
+    border-radius: 30px ;
+}
+.tittle{
+    color: black;
+    font-size: 30px;
+    padding: 70px;
+}
+.leftbar{  
+    width: 455px;
+    height: 1000px;
+    margin-left: 300px;
+    background: rgba(250, 248, 248, 0.86);
+    border-radius: 30px;
+}
+.cosname{
+    background-color: #DADADA;
+    height: 120px;
+
+}
+.cosname p{
+    font-size: 30px;
+    text-align: center;
+    padding: 30px;
+    color: black;
+    border-radius: 30px
+}
+.Ep{
+    margin-top: 40px;
+}
+.Ep a{
+    color: black;
+    font-size: 20px;
+    
+}
+.Ep:hover{
+    background-color: rgba(240, 174, 0, 0.43);;
+}
