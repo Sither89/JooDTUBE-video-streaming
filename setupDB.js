@@ -55,26 +55,26 @@ MongoClient.connect(url, function (err, db) {
 
 
   const videos = [{
-    Title: "CS360 Clip #1",
-    Describe: "About AWS seesion",
+    Title: "Overview Course",
+    Describe: "About AWS session",
     Tags: "AWS",
     Course: "AWS_DEPOLY&CLOUD",
     EP : "1",
-    filePathVideo : ""
+    filePathVideo : "videos\ pexels-cottonbro-5532774.mp4"
   },{
     Title: "Start&Overview",
     Describe: "About AWS seesion",
     Tags: "AWS",
     Course: "AWS_DEPOLY&CLOUD",
     EP : "2",
-    filePathVideo : ""
+    filePathVideo : "videos\ production ID_4114797.mp4"
   },{
-    Title: "Start&Overviewsad",
-    Describe: "About AWS seesion",
+    Title: "EC2 101",
+    Describe: "About EC2",
     Tags: "AWS",
     Course: "AWS_DEPOLY&CLOUD",
     EP : "3",
-    filePathVideo : ""
+    filePathVideo : "videos\ production ID_4124024.mp4"
   }];
 
   dbo.collection("customers").insertOne(Admin, function (err, res) {

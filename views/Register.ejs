@@ -79,8 +79,6 @@
                         <a class="toggle-password" id="toggle-password-button"></a>
                         <div class="error"></div>
                     </div>   
-                    
-
                 </div>
                 <button class="submit buttonReg" id="btnRegister" onclick="check()">Register</button>
         </form>
@@ -93,20 +91,20 @@
     </div>
     </div>
     <script>
-        function check() {
-            let fname = document.getElementById('fname').value;
-            let lname = document.getElementById('lname').value;
-            let Username = document.getElementById('Username').value;
-            let Email = document.getElementById('Email').value;
-            let password = document.getElementById('password').value;
-            let con_password = document.getElementById('con_password').value;
-            if (fname == "" || lname == "" || Username == "" || Email == "" || password == "" || con_password == "") {
-                document.getElementById('status').innerHTML = "request";
-            } else {
-                document.getElementById('status').innerHTML = "";
-                document.getElementById('submitForm').submit();
-            }
-        }
+        // function check() {
+        //     let fname = document.getElementById('fname').value;
+        //     let lname = document.getElementById('lname').value;
+        //     let Username = document.getElementById('Username').value;
+        //     let Email = document.getElementById('Email').value;
+        //     let password = document.getElementById('password').value;
+        //     let con_password = document.getElementById('con_password').value;
+        //     if (fname == "" || lname == "" || Username == "" || Email == "" || password == "" || con_password == "" || password != con_password) {
+        //         document.getElementById('status').innerHTML = "request";
+        //     } else {
+        //         document.getElementById('status').innerHTML = "";
+        //         document.getElementById('submitForm').submit();
+        //     }
+        // }
     </script>
 
     
@@ -121,8 +119,9 @@
         const password2 = document.getElementById('con_password');
 
     form.addEventListener('submit', e => {
-       
-
+        if(setError){
+            e.preventDefault();
+        }        
         validateInputs();
     });
 
@@ -133,6 +132,7 @@
         errorDisplay.innerText = message;
         inputControl.classList.add('error');
         inputControl.classList.remove('success')
+        return true;
     }
 
     const setSuccess = element => {
@@ -163,7 +163,7 @@
             setSuccess(username);
         }
 
-        if (lnameValue === '') {
+        if (fnameValue === '') {
             setError(fname, 'Please enter Firstname');
         } else {
             setSuccess(fname);
