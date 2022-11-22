@@ -182,18 +182,17 @@ http.listen(9090, function (req, res) {
     await client.connect();
     let user_query = req.query.user;
     const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
+    const courseDB = await client.db("JoodTubeDB").collection("course").find({}).toArray();
     check = 0
     userDB.forEach(user => {
       if (user._id == user_query) {
-        res.render("Course", { user: user_query });
+        res.render("Upload_video", { user: user_query, success: '' ,course : courseDB}); 
         check = 1;
       }
     });
     if (check == 0) {
       res.redirect("/login");
     }
-
-    res.render("Upload_video", { success: '' });
   });
 
 
