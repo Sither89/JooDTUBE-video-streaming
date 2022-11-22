@@ -101,18 +101,16 @@ http.listen(9090, function (req, res) {
     const client = new MongoClient(url);
     await client.connect();
     let user_query = req.query.user;
-    console.log(user_query);
     const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
     check = 0
     userDB.forEach(user => {
-      console.log(user._id)
       if (user._id == user_query) {
         if (user.Role == "Admin") {
-          res.render("Watch_vdo", { user: user_query, course: "course" });
+          res.render("Watch-page", { user: user_query, course: "course" });
           check = 1;
         }
         if (user.Role == "User") {
-          res.render("Watch_vdo", { user: user_query, course: "course_student" });
+          res.render("Watch-page", { user: user_query, course: "course_student" });
           check = 1;
         }
       }
