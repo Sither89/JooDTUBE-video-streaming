@@ -67,7 +67,6 @@ http.listen(9090, function (req, res) {
       var val = 0;
       const client = new MongoClient(url);
       await client.connect();
-
       const item = await Contact.find({})
       const salt = 10;
       const hashpass = bcrypt.hashSync(req.body.password, salt);
