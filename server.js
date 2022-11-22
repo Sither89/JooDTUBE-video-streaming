@@ -56,7 +56,8 @@ http.listen(9090, function (req, res) {
 
 
   app.get("/login", function (req, res) {
-    res.render("login");
+    res.render("login", {incorrect : ""});
+    // res.render("login");
   });
 
 
@@ -88,7 +89,8 @@ http.listen(9090, function (req, res) {
         }
       });
       if (val === 0) {
-        res.render("login");
+        // res.render("login");
+        res.render("login", {incorrect : "Email or password is incorrect"});
       }
     });
   });
