@@ -40,7 +40,7 @@ MongoClient.connect(url, function (err, db) {
     Teacher: "KANOM",
   },{
     id_course: "3",
-    name: "AWS",
+    name: "AWS_DEPOLY&CLOUD",
     description: "Guide",
     Teacher: "NOON",
   },{
@@ -58,17 +58,23 @@ MongoClient.connect(url, function (err, db) {
     Title: "CS360 Clip #1",
     Describe: "About AWS seesion",
     Tags: "AWS",
-    Course: "AWS_DEPOLY&CLOUD"
+    Course: "AWS_DEPOLY&CLOUD",
+    EP : "1",
+    filePathVideo : ""
   },{
     Title: "Start&Overview",
     Describe: "About AWS seesion",
     Tags: "AWS",
-    Course: "AWS_DEPOLY&CLOUD"
+    Course: "AWS_DEPOLY&CLOUD",
+    EP : "2",
+    filePathVideo : ""
   },{
     Title: "Start&Overviewsad",
     Describe: "About AWS seesion",
     Tags: "AWS",
-    Course: "AWS_DEPOLY&CLOUD"
+    Course: "AWS_DEPOLY&CLOUD",
+    EP : "3",
+    filePathVideo : ""
   }];
 
   dbo.collection("customers").insertOne(Admin, function (err, res) {

@@ -59,8 +59,7 @@
                                 <input type="checkbox" class="custom-control-input" id="remember-me" name="remember-me"
                                     data-parsley-multiple="remember-me">
                                 <label class="custom-control-label" for="remember-me">Keep me login</label>
-                                <b class="ml-auto border-link small-xl" style="position: absolute; right: 0px;"
-                                    href="/forget-password">Forget?</b>
+
                             </div>
                         </div>
 
@@ -91,8 +90,7 @@
         const password2 = document.getElementById('con_password');
 
     form.addEventListener('submit', e => {
-        
-        
+
         validateInputs();
     });
 
@@ -102,7 +100,7 @@
 
         errorDisplay.innerText = message;
         inputControl.classList.add('error');
-        inputControl.classList.remove('success')
+        inputControl.classList.remove('success') 
     }
 
     const setSuccess = element => {

@@ -67,7 +67,6 @@ http.listen(9090, function (req, res) {
       var val = 0;
       const client = new MongoClient(url);
       await client.connect();
-
       const item = await Contact.find({})
       const salt = 10;
       const hashpass = bcrypt.hashSync(req.body.password, salt);
@@ -102,18 +101,16 @@ http.listen(9090, function (req, res) {
     const client = new MongoClient(url);
     await client.connect();
     let user_query = req.query.user;
-    console.log(user_query);
     const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
     check = 0
     userDB.forEach(user => {
-      console.log(user._id)
       if (user._id == user_query) {
         if (user.Role == "Admin") {
-          res.render("Watch_vdo", { user: user_query , course : "course"});
+          res.render("Watch-page", { user: user_query, course: "course" });
           check = 1;
         }
         if (user.Role == "User") {
-          res.render("Watch_vdo", { user: user_query , course : "course_student"});
+          res.render("Watch-page", { user: user_query, course: "course_student" });
           check = 1;
         }
       }
@@ -152,8 +149,12 @@ http.listen(9090, function (req, res) {
 
 
 
-  app.get("/works-in-chrome", (req, res) => {
+  app.get("/works-in-chrome", async (req, res) => {
     res.setHeader("content-type", "video/mp4");
+
+    const client = new MongoClient(url);
+    await client.connect();
+    const video = await client.db("JoodTubeDB").collection("videos").find({}).toArray();
 
     fs.stat(filePath, (err, stat) => {
       if (err) {
@@ -201,25 +202,44 @@ http.listen(9090, function (req, res) {
     Describe: String,
     Tags: String,
     Course: String,
+    EP: String,
     filePathVideo: String
   };
 
   const contractVideo = mongoose.model("videos", contactVideoSchema);
 
   app.post('/upload-vdo', function (req, res) {
-    upload(req, res, function (err) {
+    upload(req, res, async function (err) {
+      const client = new MongoClient(url);
+      await client.connect();
+      const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
+      const video = await client.db("JoodTubeDB").collection("videos").find({}).toArray();
+      const course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
+      var count = 0;
+      course.forEach(course => {
+        console.log(count);
+        video.forEach(video => {
+          if (video.course == course.name) { 
+            console.log(count);
+            count++;
+          }
+        });
+      });
+
       const contactVideo = new contractVideo({
         Title: req.body.title,
         Describe: req.body.describe,
         Tags: req.body.tags,
         Course: req.body.course,
+        EP: count.toString(),
         filePathVideo: req.file.path
       });
       contactVideo.save(function (err) {
         if (err) {
           throw err;
         } else {
-          res.render('Upload_video', { success: 'Uploaded Video Successfully' });
+          // res.redirect('/upload_vdo?' + 'user=' + userDB._id ,{ success: 'Uploaded Video Successfully' ,course : course});
+          res.render('Upload_video', { success: 'Uploaded Video Successfully' ,course : course, user : userDB._id});
         }
       });
     });
@@ -263,8 +283,10 @@ http.listen(9090, function (req, res) {
     check = 0
     userDB.forEach(user => {
       if (user._id == user_query) {
-        res.render("Course", { Course: Course, user: user_query });
-        check = 1;
+        if (user.Role == "Admin") {
+          res.render("Course", { Course: Course, user: user_query });
+          check = 1;
+        }
       }
     });
     if (check == 0) {
