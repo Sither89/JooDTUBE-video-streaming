@@ -151,11 +151,11 @@ http.listen(9090, function (req, res) {
     userDB.forEach(user => {
       if (user._id == user_query) {
         if (user.Role == "Admin") {
-          res.render("Watch-page", { user: user_query, course: "course", course_name: course_name, video: video_ep, EP: ep, video_name: video_name });
+          res.render("Watch-page", { user: user_query, course: "course", course_name: course_name, video: video_ep, EP: ep, video_name: video_name , role : "Admin"});
           check = 1;
         }
         if (user.Role == "User") {
-          res.render("Watch-page", { user: user_query, course: "course_student", course_name: course_name });
+          res.render("Watch-page", { user: user_query, course: "course_student", course_name: course_name , video: video_ep, EP: ep, video_name: video_name , role : "User"});
           check = 1;
         }
       }

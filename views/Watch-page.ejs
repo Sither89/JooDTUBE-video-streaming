@@ -27,8 +27,14 @@
                 <nav>
                     <ul class="nav_links">
                         <li><a href="/" style="margin: 10px">Home</a></li>
+                        
+
+                        <%if( role == "Admin"){%>
                         <li><a href="/course?user=<%=user%>">Courses</a></li>
                         <li><a href="/upload_vdo?user=<%=user%>">Upload</a></li>
+                        <%}else{%>
+                            <li><a href="/course_student?user=<%=user%>">Courses</a></li>
+                        <%}%>
                         <div class="dropdown">
                             <button onclick="myFunction()" class="dropbtn">My Profile</button>
                             <div id="myDropdown" class="dropdown-content">
@@ -46,8 +52,8 @@
                 <div>
                     <h1 class="tittle">Ep <%=EP%>: <%=video_name%>
                     </h1>
-                    <video style="height: 500px; display: block; margin: auto;margin-top: 50px;" muted playsInline loop
-                        controls src="/works-in-chrome"></video>
+                    <video style="height: 500px; display: block; margin-left: 10%;" muted playsInline loop
+                        controls src="/works-in-chrome" class="video-e"></video>
                 </div>
 
 
