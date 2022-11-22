@@ -1,4 +1,4 @@
-describe('JoodTUBE', () => {
+describe('JoodTUBE End 2 End test', () => {
   beforeAll(async () => {
     await page.goto('http://localhost:9090/')
   })
@@ -191,7 +191,7 @@ describe('JoodTUBE', () => {
   const request = require("supertest")
 const baseURL = "http://localhost:9090"
 
-describe("GET /", () => {
+describe("BackEndTest GET /", () => {
     it("test / page return 200", async () => {
         const response = await request(baseURL).get("/");
         expect(response.statusCode).toBe(200);

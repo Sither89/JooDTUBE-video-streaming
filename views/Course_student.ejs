@@ -25,7 +25,6 @@
                     <div class="dropdown">
                         <button onclick="myFunction()" class="dropbtn">My Profile</button>
                         <div id="myDropdown" class="dropdown-content">
-                            <a href="#">Profile</a>
                             <a href="/">logout</a>
                         </div>
                     </div>
@@ -34,35 +33,7 @@
             </nav>
         </header>
     </div><br><br>
-    <div class="dropdown2">
-        <span class="Catagory">
-            <label for="cata">Catagory :</label>
-            <select id="cata">
-                <option>All</option>
-                <option>###</option>
-                <option>###</option>
-                <option>###</option>
-            </select>
-        </span>
-        <span class="Teacher">
-            <label for="Teac">Teacher :</label>
-            <select id="Teac">
-                <option>All</option>
-                <option>###</option>
-                <option>###</option>
-                <option>###</option>
-            </select>
-        </span>
-        <div class="search" style="position: relative;">
-            <form action="#">
-                <input type="text" placeholder=" Search Courses" name="search">
-                <button class="iconseaech">
-                    <i class="fa fa-search" style="font-size: 18px;">
-                    </i>
-                </button>
-            </form>
-        </div>
-    </div>
+
     <div class="white-box">
         <h2 style="padding: 4%; font-family: monospace, sans-serif;">Courses</h2>
         <% for(var i=0; i < Course.length ; i) { %>
@@ -73,28 +44,28 @@
                 <div class="flex-container" id="line1" style="margin-top: 7%;">
              <%}%>        
            <% if(i < Course.length) {%>
-                <div class="item1" id="11">
+            <div class="item1" id="11">
                 <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamecourse" href="/watch_vdo?user=<%=user%>"><%= Course[i].name %></a>
+                <a class="textnamecourse" href="/watch_vdo?user=<%=user%>&course=<%=Course[i].name%>&EP=1"><%= Course[i].name %></a>
             </div>
-        <% i++ %> 
+                <% i++ %> 
             <%}%>
 
             <% if(i < Course.length) {%>
-                <div class="item1" id="11">
+            <div class="item1" id="11">
                 <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamecourse" href="###"><%= Course[i].name %></a>
+                <a class="textnamecourse" href="/watch_vdo?user=<%=user%>&course=<%=Course[i].name%>&EP=1"><%= Course[i].name %></a>
             </div>
-          <% i++ %> 
-              <%}%>
+                <% i++ %> 
+            <%}%>
 
             <% if(i < Course.length) {%>
-                <div class="item1" id="11">
+            <div class="item1" id="11">
                 <img class="imgdum" src="/views/image/dummy-img.png"><br><br>
-                <a class="textnamecourse" href="###"><%= Course[i].name %></a>
+                <a class="textnamecourse" href="/watch_vdo?user=<%=user%>&course=<%=Course[i].name%>&EP=1"><%= Course[i].name %></a>
             </div>
-          <% i++ %> 
-              <%}%>
+                <% i++ %> 
+            <%}%>
 
         <% if(i % 3 == 0) { %>   
             
