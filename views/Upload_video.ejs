@@ -8,7 +8,7 @@
 
   <title>JoodTUBE</title>
 
-  <link rel="stylesheet" href="views/assets/UploadVdo.css">
+  <link rel="stylesheet" href="/views/assets/UploadVdo.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -46,7 +46,7 @@
       <div class="col-md-10 mx-auto">
         <div class="card card-body ">
           <h1>Upload a video</h1>
-          <form action="/upload-vdo?user=<%=user%>" method="post" enctype="multipart/form-data">
+          <form action="/upload-vdo?user=<%=user%>" method="post" enctype="multipart/form-data" id="submitForm">
             <div class="clearfix">
               <div class="box1 " style="background-color:#E6E6E6; margin-left: 26%;">
                 <img src="https://media.discordapp.net/attachments/1013480789062713488/1022228434132422746/upload_1.png"
@@ -136,7 +136,7 @@
     const tags = document.getElementById('tags');
 
 form.addEventListener('submit', e => {
-    e.preventDefault();
+    
 
     validateInputs();
 });
