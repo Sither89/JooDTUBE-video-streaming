@@ -130,26 +130,30 @@ http.listen(9090, function (req, res) {
     const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
     const video = await client.db("JoodTubeDB").collection("videos").find({}).toArray();
     var video_ep = new Array();
+    var video_name;
     let i = 0;
-    video.forEach(video=>{
-      if(video.Course == course_name){
-        video_ep[i] = video.EP;
+    video.forEach(video => {
+      if (video.Course == course_name) {
+        video_ep[i] = video;
         i++;
       }
+      if (video.EP == ep) {
+        video_name = video.Title;
+      }
     });
-    console.log(video_ep);
+
     // video_ep.forEach(ep=>{
     //   console.log(ep);
     // });
-    
+
     userDB.forEach(user => {
       if (user._id == user_query) {
         if (user.Role == "Admin") {
-          res.render("Watch-page", { user: user_query, course: "course" , course_name : course_name});
+          res.render("Watch-page", { user: user_query, course: "course", course_name: course_name, video: video_ep, EP: ep, video_name: video_name });
           check = 1;
         }
         if (user.Role == "User") {
-          res.render("Watch-page", { user: user_query, course: "course_student" });
+          res.render("Watch-page", { user: user_query, course: "course_student", course_name: course_name });
           check = 1;
         }
       }
@@ -165,9 +169,9 @@ http.listen(9090, function (req, res) {
     const client = new MongoClient(url);
     await client.connect();
     const video = await client.db("JoodTubeDB").collection("videos").find({}).toArray();
-    let videoFilepath;
-    video.forEach(video=>{
-      if(video.Course == course_name && video.EP == ep){
+    let videoFilepath = "";
+    video.forEach(video => {
+      if (video.Course == course_name && video.EP == ep) {
         videoFilepath = video.filePathVideo;
       }
     });
