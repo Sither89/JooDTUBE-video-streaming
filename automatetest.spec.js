@@ -41,7 +41,7 @@ describe('JoodTUBE End 2 End test', () => {
 
   it('should display Home page', async () => {
     await Promise.all([
-      page.$eval('a#logo', element =>
+      page.$eval('a[id=logo]', element =>
         element.click()
       ),
       await page.waitForNavigation(),
@@ -50,7 +50,7 @@ describe('JoodTUBE End 2 End test', () => {
 
     await page.goto('http://localhost:9090/login')
     await Promise.all([
-      page.$eval('a#logo', element =>
+      page.$eval('a[id=logo]', element =>
         element.click()
       ),
       await page.waitForNavigation(),
@@ -59,7 +59,7 @@ describe('JoodTUBE End 2 End test', () => {
 
     await page.goto('http://localhost:9090/login')
     await Promise.all([
-      page.$eval('a#homepage', element =>
+      page.$eval('a[id=homepage]', element =>
         element.click()
       ),
       await page.waitForNavigation(),
@@ -68,7 +68,7 @@ describe('JoodTUBE End 2 End test', () => {
 
     await page.goto('http://localhost:9090/upload_vdo')
     await Promise.all([
-    page.$eval('a#logo', element =>
+      page.$eval('a[id=logo]', element =>
       element.click()
     ),
     await page.waitForNavigation(),
@@ -77,7 +77,7 @@ describe('JoodTUBE End 2 End test', () => {
 
     await page.goto('http://localhost:9090/upload_vdo')
     await Promise.all([
-      page.$eval('a#homepage', element =>
+      page.$eval('a[id=homepage]', element =>
         element.click()
       ),
       await page.waitForNavigation(),
@@ -91,7 +91,7 @@ describe('JoodTUBE End 2 End test', () => {
 
     await page.goto('http://localhost:9090/watch_vdo')
     await Promise.all([
-    page.$eval('a#logo', element =>
+    page.$eval('a[id=logo]', element =>
       element.click()
     ),
     await page.waitForNavigation(),
@@ -100,7 +100,7 @@ describe('JoodTUBE End 2 End test', () => {
 
     await page.goto('http://localhost:9090/watch_vdo')
     await Promise.all([
-      page.$eval('a#homepage', element =>
+      page.$eval('a[id=homepage]', element =>
         element.click()
       ),
       await page.waitForNavigation(),
@@ -114,7 +114,7 @@ describe('JoodTUBE End 2 End test', () => {
 
     await page.goto('http://localhost:9090/register')
     await Promise.all([
-      page.$eval('a#logo', element =>
+      page.$eval('a[id=logo]', element =>
         element.click()
       ),
       await page.waitForNavigation(),
@@ -123,12 +123,79 @@ describe('JoodTUBE End 2 End test', () => {
 
     await page.goto('http://localhost:9090/register')
     await Promise.all([
-      page.$eval('a#homepage', element =>
+      page.$eval('a[id=homepage]', element =>
         element.click()
       ),
       await page.waitForNavigation(),
       ]);
     expect( page.url() ).toBe('http://localhost:9090/')
+
+    await page.goto('http://localhost:9090/course_guest')
+    await Promise.all([
+      page.$eval('a[id=logo]', element =>
+      element.click()
+    ),
+    await page.waitForNavigation(),
+    ]);
+    expect( page.url() ).toBe('http://localhost:9090/')
+
+    await page.goto('http://localhost:9090/course_student')
+    await Promise.all([
+      page.$eval('a[id=logo]', element =>
+      element.click()
+    ),
+    await page.waitForNavigation(),
+    ]);
+    expect( page.url() ).toBe('http://localhost:9090/')
+
+    await page.goto('http://localhost:9090/course')
+    await Promise.all([
+      page.$eval('a[id=logo]', element =>
+      element.click()
+    ),
+    await page.waitForNavigation(),
+    ]);
+    expect( page.url() ).toBe('http://localhost:9090/')
+  })
+
+  it('should display courseguest page', async () => {
+    await page.goto('http://localhost:9090/course_guest')
+    await Promise.all([
+      page.$eval('a[id=courseguest]', element =>
+        element.click()
+      ),
+      await page.waitForNavigation(),
+      ]);
+    expect( page.url() ).toBe('http://localhost:9090/course_guest')
+
+    await page.goto('http://localhost:9090/')
+    await Promise.all([
+      page.$eval('a[id=courseguest]', element =>
+        element.click()
+      ),
+      await page.waitForNavigation(),
+      ]);
+    expect( page.url() ).toBe('http://localhost:9090/course_guest')
+
+    await page.goto('http://localhost:9090/login')
+    await Promise.all([
+      page.$eval('a[id=courseguest]', element =>
+        element.click()
+      ),
+      await page.waitForNavigation(),
+      ]);
+    expect( page.url() ).toBe('http://localhost:9090/course_guest')
+
+    await page.goto('http://localhost:9090/register')
+    await Promise.all([
+      page.$eval('a[id=courseguest]', element =>
+        element.click()
+      ),
+      await page.waitForNavigation(),
+      ]);
+    expect( page.url() ).toBe('http://localhost:9090/course_guest')
+
+    
   })
 
   //================== new test ==================
