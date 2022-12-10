@@ -19,7 +19,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out repository code
+        uses: actions/checkout@v3
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
@@ -32,4 +33,10 @@ jobs:
       - run: node setupDB.js
       - run: npm run build --if-present
       - run: npm start & npm test
+  buildDockerImage:
+     runs-on: ubuntu-latest
+     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
       
