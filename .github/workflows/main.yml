@@ -72,7 +72,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - run: docker image build -t ${{ secrets.DOCKERHUB_USERNAME }}/joodtube3.0:latest .
-      - run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/joodtube3.0:latest .
+      - run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/joodtube3.0:latest
+
       - name: Configure AWS credentials
         if: success()
         uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
