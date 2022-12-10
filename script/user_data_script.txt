@@ -7,4 +7,4 @@ sudo service docker start
 sudo gpasswd -a ec2-user docker
 newgrp docker
 
-docker run -dp 9090:9090 immanewbies/tunews
+docker run -dp 9090:9090 sither/joodtubeee
