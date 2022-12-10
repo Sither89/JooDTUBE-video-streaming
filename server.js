@@ -56,7 +56,7 @@ http.listen(9090, function (req, res) {
 
 
   app.get("/login", function (req, res) {
-    res.render("login", {incorrect : ""});
+    res.render("login", { incorrect: '' });
     // res.render("login");
   });
 
@@ -90,7 +90,7 @@ http.listen(9090, function (req, res) {
       });
       if (val === 0) {
         // res.render("login");
-        res.render("login", {incorrect : "Email or password is incorrect"});
+        res.render("login", { incorrect: "Email or password is incorrect" });
       }
     });
   });
@@ -126,6 +126,7 @@ http.listen(9090, function (req, res) {
   app.get("/watch_vdo", async function (req, res) {
     const client = new MongoClient(url);
     await client.connect();
+    let check = 0;
     let user_query = req.query.user;
     course_name = req.query.course;
     ep = req.query.EP;
@@ -144,18 +145,14 @@ http.listen(9090, function (req, res) {
       }
     });
 
-    // video_ep.forEach(ep=>{
-    //   console.log(ep);
-    // });
-
     userDB.forEach(user => {
       if (user._id == user_query) {
         if (user.Role == "Admin") {
-          res.render("Watch-page", { user: user_query, course: "course", course_name: course_name, video: video_ep, EP: ep, video_name: video_name , role : "Admin"});
+          res.render("Watch-page", { user: user_query, course: "course", course_name: course_name, video: video_ep, EP: ep, video_name: video_name, role: "Admin" });
           check = 1;
         }
         if (user.Role == "User") {
-          res.render("Watch-page", { user: user_query, course: "course_student", course_name: course_name , video: video_ep, EP: ep, video_name: video_name , role : "User"});
+          res.render("Watch-page", { user: user_query, course: "course_student", course_name: course_name, video: video_ep, EP: ep, video_name: video_name, role: "User" });
           check = 1;
         }
       }
@@ -231,6 +228,7 @@ http.listen(9090, function (req, res) {
   const contractVideo = mongoose.model("videos", contactVideoSchema);
 
   app.post('/upload_vdo', function (req, res) {
+
     upload(req, res, async function (err) {
       const client = new MongoClient(url);
       let user_query = req.query.user;
@@ -239,27 +237,40 @@ http.listen(9090, function (req, res) {
       const video = await client.db("JoodTubeDB").collection("videos").find({}).toArray();
       const course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
       var count = 1;
-      video.forEach(video => {
-        if (video.Course == req.body.course) {
-          count += 1;
+      check = 0
+      userDB.forEach(user => {
+        if (user._id == user_query) {
+          res.render("Upload_video", { user: user_query, success: '', course: courseDB });
+          check = 1;
         }
       });
-      const contactVideo = new contractVideo({
-        Title: req.body.title,
-        Describe: req.body.describe,
-        Tags: req.body.tags,
-        Course: req.body.course,
-        EP: count.toString(),
-        filePathVideo: req.file.path
-      });
+      if (check == 0) {
+        res.redirect("/login");
+      }
+      if (check == 1) {
+        video.forEach(video => {
+          if (video.Course == req.body.course) {
+            count += 1;
+          }
+        });
+        const contactVideo = new contractVideo({
+          Title: req.body.title,
+          Describe: req.body.describe,
+          Tags: req.body.tags,
+          Course: req.body.course,
+          EP: count.toString(),
+          filePathVideo: req.file.path
+        });
 
-      contactVideo.save(function (err) {
-        if (err) {
-          throw err;
-        } else {
-          res.render('Upload_video', { success: 'Uploaded Video Successfully', course: course, user: user_query });
-        }
-      });
+        contactVideo.save(function (err) {
+          if (err) {
+            throw err;
+          } else {
+            res.render('Upload_video', { success: 'Uploaded Video Successfully', course: course, user: user_query });
+          }
+        });
+      }
+
     });
   });
 
