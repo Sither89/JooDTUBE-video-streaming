@@ -260,7 +260,7 @@ describe('JoodTUBE End 2 End test', () => {
 
 
 
-describe("BackEndTest GET /", () => {
+describe("BackEndTest", () => {
   it("test / page return 200", async () => {
     const response = await request(baseURL).get("/");
     expect(response.statusCode).toBe(200);
@@ -282,7 +282,7 @@ describe("BackEndTest GET /", () => {
   });
 
   describe("GET /watch_vdo", () => {
-    it("test /watch_vdo page should return 200", async () => {
+    it("test /watch_vdo page should return 500", async () => {
       const response = await request(baseURL).get("/watch_vdo");
       expect(response.statusCode).toBe(500);
     });

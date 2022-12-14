@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  project:
+    image: project
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 9090:9090
+    volumes:
+      - .:/usr/src/app
+    links:
+      - mongo
+  mongo:
+    image: mongo:latest
+    ports:
+      - 27018:27017
+    volumes:
+      - data:/data/db
+
+volumes:
+  data:

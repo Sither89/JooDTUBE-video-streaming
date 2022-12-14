@@ -9,11 +9,33 @@ app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
 require('./db');
 const mongoose = require("mongoose");
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+//var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/JoodTubeDB";
 var bcrypt = require('bcryptjs');
 ////////////////////////////////////////////
 
+
+mongoose.connect(url ,{useNewUrlParser: true});
+var connection = mongoose.connection;
+connection.on('error', console.error.bind(console, 'CONNECTION ERROR'));
+connection.once('open', async function(){
+  console.log('Connected')
+  // var { Contact } = require('./models/User'); 
+  // var { contactVideo } = require('./models/Video');
+  // var { courseContact } = require('./models/Course');
+  // const user = await Contact.find();  
+  // const video = await contactVideo.find();  
+  // const course = await courseContact.find();  
+  // console.log("User",user);
+  // console.log("Video",video);
+  // console.log("Course",course);
+});
+var Contact = connection.model('customers', require('./models/User'));
+var contactVideo = connection.model('videos', require('./models/Video'));
+var courseContact = connection.model('courses', require('./models/Course'));
+// var { Contact } = require('./models/User'); 
+// var { contactVideo } = require('./models/Video');
+// var { courseContact } = require('./models/Course');
 
 
 var formidable = require('formidable');
@@ -26,7 +48,6 @@ app.set("view engine", "ejs");
 
 const session = require('express-session');
 const flash = require('connect-flash');
-const { Int32 } = require("mongodb");
 
 const filePath = "videos/test.mp4";
 
@@ -38,35 +59,15 @@ http.listen(9090, function (req, res) {
     res.render("index");
   });
 
-
-
-  const contactSchema = {
-    fname: String,
-    lname: String,
-    Username: String,
-    Email: String,
-    password: String,
-    Role: String
-  };
-
-
-
-  const Contact = mongoose.model("customers", contactSchema);
-
-
-
   app.get("/login", function (req, res) {
     res.render("login", { incorrect: '' });
     // res.render("login");
   });
 
-
   app.post("/login", async function (req, res) {
-    MongoClient.connect(url, async function (err, db) {
       var val = 0;
-      const client = new MongoClient(url);
-      await client.connect();
-      const item = await Contact.find({})
+      const item = await Contact.find();
+      //console.log(item)
       const salt = 10;
       const hashpass = bcrypt.hashSync(req.body.password, salt);
       item.forEach(item => {
@@ -92,7 +93,7 @@ http.listen(9090, function (req, res) {
         // res.render("login");
         res.render("login", { incorrect: "Email or password is incorrect" });
       }
-    });
+   //});
   });
 
   app.get("/register", function (req, res) {
@@ -124,14 +125,16 @@ http.listen(9090, function (req, res) {
   var ep;
 
   app.get("/watch_vdo", async function (req, res) {
-    const client = new MongoClient(url);
-    await client.connect();
+    //const client = new MongoClient(url);
+    //await client.connect();
     let check = 0;
     let user_query = req.query.user;
     course_name = req.query.course;
     ep = req.query.EP;
-    const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
-    const video = await client.db("JoodTubeDB").collection("videos").find({}).toArray();
+    const userDB = await Contact.find();
+    const video = await contactVideo.find();
+    //const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
+    //const video = await client.db("JoodTubeDB").collection("videos").find({}).toArray();
     var video_ep = new Array();
     var video_name;
     let i = 0;
@@ -165,9 +168,10 @@ http.listen(9090, function (req, res) {
 
   app.get("/works-in-chrome", async (req, res) => {
     res.setHeader("content-type", "video/mp4");
-    const client = new MongoClient(url);
-    await client.connect();
-    const video = await client.db("JoodTubeDB").collection("videos").find({}).toArray();
+    //const client = new MongoClient(url);
+    //await client.connect();
+    const video = await contactVideo.find();
+    //const video = await client.db("JoodTubeDB").collection("videos").find({}).toArray();
     let videoFilepath = "";
     video.forEach(video => {
       if (video.Course == course_name && video.EP == ep) {
@@ -198,11 +202,13 @@ http.listen(9090, function (req, res) {
 
 
   app.get("/upload_vdo", async function (req, res) {
-    const client = new MongoClient(url);
-    await client.connect();
+    //const client = new MongoClient(url);
+    //await client.connect();
     let user_query = req.query.user;
-    const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
-    const courseDB = await client.db("JoodTubeDB").collection("course").find({}).toArray();
+    const userDB = await Contact.find();
+    const courseDB = await courseContact.find();
+    //const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
+    //const courseDB = await client.db("JoodTubeDB").collection("course").find({}).toArray();
     check = 0
     userDB.forEach(user => {
       if (user._id == user_query) {
@@ -216,26 +222,29 @@ http.listen(9090, function (req, res) {
   });
 
 
-  const contactVideoSchema = {
-    Title: String,
-    Describe: String,
-    Tags: String,
-    Course: String,
-    EP: String,
-    filePathVideo: String
-  };
+  // const contactVideoSchema = {
+  //   Title: String,
+  //   Describe: String,
+  //   Tags: String,
+  //   Course: String,
+  //   EP: String,
+  //   filePathVideo: String
+  // };
 
-  const contractVideo = mongoose.model("videos", contactVideoSchema);
+  // const contractVideo = mongoose.model("videos", contactVideoSchema);
 
   app.post('/upload_vdo', function (req, res) {
 
     upload(req, res, async function (err) {
-      const client = new MongoClient(url);
+      //const client = new MongoClient(url);
       let user_query = req.query.user;
-      await client.connect();
-      const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
-      const video = await client.db("JoodTubeDB").collection("videos").find({}).toArray();
-      const course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
+      //
+      //const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
+      const userDB = await Contact.find();
+      const video = await contactVideo.find();
+      const course = await courseContact.find();
+      //const video = await client.db("JoodTubeDB").collection("videos").find({}).toArray();
+      //const course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
       var count = 1;
       check = 0
       userDB.forEach(user => {
@@ -253,7 +262,7 @@ http.listen(9090, function (req, res) {
             count += 1;
           }
         });
-        const contactVideo = new contractVideo({
+        const contactVideo = new contactVideo({
           Title: req.body.title,
           Describe: req.body.describe,
           Tags: req.body.tags,
@@ -304,11 +313,13 @@ http.listen(9090, function (req, res) {
 
 
   app.get("/course", async function (req, res) {
-    const client = new MongoClient(url);
-    await client.connect();
     let user_query = req.query.user;
-    const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
-    const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
+    const Course = await courseContact.find();
+    console.log(Course)
+    //const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
+    const userDB = await Contact.find();
+    console.log(userDB)
+    //const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
     check = 0
     userDB.forEach(user => {
       if (user._id == user_query) {
@@ -325,11 +336,13 @@ http.listen(9090, function (req, res) {
   });
 
   app.get("/course_student", async function (req, res) {
-    const client = new MongoClient(url);
-    await client.connect();
+    //const client = new MongoClient(url);
+    //await client.connect();
     let user_query = req.query.user;
-    const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
-    const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
+    const Course = await courseContact.find();
+    //const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
+    const userDB = await Contact.find();
+    //const userDB = await client.db("JoodTubeDB").collection("customers").find({}).toArray();
     check = 0
     userDB.forEach(user => {
       if (user._id == user_query) {
@@ -343,9 +356,10 @@ http.listen(9090, function (req, res) {
   });
 
   app.get("/course_guest", async function (req, res) {
-    const client = new MongoClient(url);
-    await client.connect();
-    const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
+    //const client = new MongoClient(url);
+    //await client.connect();
+    const Course = await courseContact.find();
+    //const Course = await client.db("JoodTubeDB").collection("course").find({}).toArray();
     res.render("Course_guest", { Course: Course });
   });
 
