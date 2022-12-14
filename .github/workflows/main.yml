@@ -29,7 +29,7 @@ jobs:
         uses: supercharge/mongodb-github-action@1.8.0
         with:
           mongodb-version: '6.0'
-      - run: npm ci
+      - run: npm install
       - run: node setupDB.js
       - run: npm run build --if-present
       - run: npm start & npm test
