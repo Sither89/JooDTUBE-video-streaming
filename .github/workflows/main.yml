@@ -1,0 +1,80 @@
+name: Test 
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.8.0
+        with:
+          mongodb-version: '6.0'
+      - run: npm ci
+      - run: node setupDB.js
+      - run: npm run build --if-present
+      - run: npm start & npm test
+      - run: mkdir docker
+      - run: cd docker
+      - run: touch setup.sh
+      - run: echo '#!/bin/sh' >> setup.sh
+      - run: echo 'yum update -y' >> setup.sh
+      - run: echo 'yum install -y mongodb-org' >> setup.sh
+      - run: echo 'systemctl start mongod' >> setup.sh
+      - run: echo 'systemctl status mongod' >> setup.sh
+      - run: echo '#install node.js and git in EC2' >> setup.sh
+      - run: echo 'yum install git -y' >> setup.sh
+      - run: echo 'yum install gcc-c++ make -y' >> setup.sh
+      - run: echo 'curl -sL https://rpm.nodesource.com/setup_16.x | bash' >> setup.sh
+      - run: echo 'yum install nodejs -y' >> setup.sh
+      - run: echo 'git clone https://github.com/Sither89/JooDTUBE-video-streaming   ' >> setup.sh
+      - run: echo 'cd JooDTUBE-video-streaming' >> setup.sh
+      - run: echo 'npm install' >> setup.sh
+      - run: echo 'node setupDB.js' >> setup.sh
+      - run: echo 'npm start' >> setup.sh
+      - run: touch Dockerfile
+      - run: echo 'FROM amazonlinux' >> Dockerfile
+      - run: echo 'EXPOSE 9090' >> Dockerfile
+      - run: echo 'COPY setup.sh /' >> Dockerfile
+      - run: echo 'RUN chmod 705 ./setup.sh' >> Dockerfile
+      - run: echo 'CMD ["./setup.sh"]' >> Dockerfile
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - run: docker image build -t ${{ secrets.DOCKERHUB_USERNAME }}/joodtubeee:latest .
+      - run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/joodtubeee:latest
+      - name: Configure AWS credentials
+        if: success()
+        uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Create EC2 and deploy application to EC2
+        if: success()
+        env: 
+          KEY_PAIR_NAME: ${{ secrets.AWS_KEYPAIR_NAME }}
+          SECGROUP_ID: ${{ secrets.AWS_SECGROUP_ID }}
+        run: aws ec2 run-instances --image-id ami-0b0dcb5067f052a63 --instance-type t2.micro  --key-name $KEY_PAIR_NAME --security-group-ids $SECGROUP_ID --user-data file://script/user_data_script.txt
