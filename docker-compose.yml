@@ -10,16 +10,28 @@ services:
       NODE_ENV: production
     ports:
       - 9090:9090
+    depends_on:
+      - mongo
+    networks:
+      - mern-app
     volumes:
       - .:/usr/src/app
     links:
       - mongo
+    
   mongo:
     image: mongo:latest
     ports:
       - 27018:27017
+    networks:
+      - mern-app
     volumes:
       - data:/data/db
-
+    
+networks:
+  mern-app:
+    driver: bridge
 volumes:
   data:
+    driver: local
+  mongo-db:

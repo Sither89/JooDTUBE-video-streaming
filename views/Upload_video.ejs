@@ -52,7 +52,7 @@
                   class="Play" style="display: block; margin-left: auto; margin-right: auto; margin-top: 30px; ">
                 <div class="Text1">
                   <label style="color:black ;">Click to upload video</label><br>
-                  <input type="file" name="video" accept="video/*" required><br>
+                  <input type="file" name="video" id="video" accept="video/*" required><br>
 
                 </div>
               </div>
@@ -80,8 +80,10 @@
               <select name="course" id="course" required>
                 <option value="">Plese select course</option>
                 <%course.forEach(course=> {%>
-                  <option value="<%=course.name%>" name="course" id="course"><%=course.name%></option>
-                <%})%>
+                  <option value="<%=course.name%>" name="course" id="course">
+                    <%=course.name%>
+                  </option>
+                  <%})%>
 
                     <div class="error"></div>
               </select>
@@ -98,34 +100,34 @@
 
                 <% } %>
                   <input type="submit" class="fa-upload" style="float: right; width: 25%;" value="upload" />
-        </div>
-        </form>
+            </div>
+          </form>
 
-        <script>
-          /* When the user clicks on the button, 
-          toggle between hiding and showing the dropdown content */
-          function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-          }
+          <script>
+            /* When the user clicks on the button, 
+            toggle between hiding and showing the dropdown content */
+            function myFunction() {
+              document.getElementById("myDropdown").classList.toggle("show");
+            }
 
-          // Close the dropdown if the user clicks outside of it
-          window.onclick = function (event) {
-            if (!event.target.matches('.dropbtn')) {
-              var dropdowns = document.getElementsByClassName("dropdown-content");
-              var i;
-              for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                  openDropdown.classList.remove('show');
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function (event) {
+              if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                  var openDropdown = dropdowns[i];
+                  if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                  }
                 }
               }
             }
-          }
-        </script>
+          </script>
 
+        </div>
       </div>
     </div>
-  </div>
   </div>
   <script>
 

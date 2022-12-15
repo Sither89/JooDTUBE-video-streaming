@@ -9,5 +9,5 @@ const contactVideoSchema = new mongoose.Schema({
     filePathVideo: String
 });
 
-// module.exports.contractVideo = mongoose.model('videos', contactVideoSchema);
-module.exports = contactVideoSchema;
+module.exports = mongoose.model('videos', contactVideoSchema);
+// module.exports = contactVideoSchema;

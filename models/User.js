@@ -9,5 +9,4 @@ const customerSchema = new mongoose.Schema({
   Role: String
 });
 
-// module.exports.Contact = mongoose.model('customers', customerSchema);
-module.exports = customerSchema;
+module.exports = mongoose.model('customers', customerSchema)

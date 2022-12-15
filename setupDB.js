@@ -1,5 +1,5 @@
 const {MongoClient} = require('mongodb');
-var url = "mongodb://mongodb:27017/JoodTubeDB";
+var url = "mongodb://localhost:27017/JoodTubeDB";
 const client = new MongoClient(url);
 
 // mongoose.connect(url, { useNewUrlParser: true });
