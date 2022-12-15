@@ -71,7 +71,7 @@ describe('New test', () => {
     await page.$eval( 'input[id=username]', ( el, value ) => el.value = value, 'admin@gmail.com' );
     await page.$eval( 'input[id=password]', ( el, value ) => el.value = value, 'admin12345' );
     await page.$eval( 'button[id=btnlogin]', form => form.click() );
-    expect( await page.url() ).toBe('http://localhost:9090/course')
+    expect( await page.url() ).toBe('http://localhost:9090/course?user=639b8094b5387037303fd46b')
   })
 
   it('test login role student', async () => {
@@ -79,6 +79,6 @@ describe('New test', () => {
     await page.$eval( 'input[id=username]', ( el, value ) => el.value = value, 'user@gmail.com' );
     await page.$eval( 'input[id=password]', ( el, value ) => el.value = value, 'user12345' );
     await page.$eval( 'button[id=btnlogin]', form => form.click() );
-    expect( await page.url() ).toBe('http://localhost:9090/course_student')
+    expect( await page.url() ).toBe('http://localhost:9090/course_student?user=639b8094b5387037303fd46c')
   })
 });

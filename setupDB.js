@@ -5,8 +5,8 @@ const courseContact = require('./models/Course');
 const contactVideo = require('./models/Video');
 
 // Connection URL
-// const url = 'mongodb://localhost:27017/JoodTubeDB';
-const url = 'mongodb://mongo:27017/JoodTubeDB';
+const url = 'mongodb://localhost:27017/JoodTubeDB';
+// const url = 'mongodb://mongo:27017/JoodTubeDB';
 
 const connectDB = async () => {
   try {
