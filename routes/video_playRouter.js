@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
     var course_name = req.query.course;
     var ep = req.query.EP
     const video = await contactVideo.find();
-    console.log(course_name);
+    console.log("Video",video);
     let videoFilepath = "";
     video.forEach(video => {
         if (video.Course == course_name && video.EP == ep) {
