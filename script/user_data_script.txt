@@ -12,4 +12,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 git clone https://github.com/Sither89/JooDTUBE-video-streaming.git
 cd JooDTUBE-video-streaming
+touch .env
+echo 'STATUS=production' >> .env
+echo '#DB CONFIG' >> .env
+echo 'PROD_HOST="mongo"' >> .env
+echo 'DEV_HOST="localhost"' >> .env
 docker-compose up
