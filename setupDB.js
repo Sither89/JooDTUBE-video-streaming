@@ -3,11 +3,15 @@ const mongoose = require('mongoose');
 const Contact = require('./models/User');
 const courseContact = require('./models/Course');
 const contactVideo = require('./models/Video');
-
+require('dotenv').config();
+var host;
+process.env.STATUS === 'production'
+  ? (host = process.env.PROD_HOST)
+  : (host = process.env.DEV_HOST);
 // Connection URL
-const url = 'mongodb://localhost:27017/JoodTubeDB';
+const url = 'mongodb://'+ host +':27017/JoodTubeDB';
 // const url = 'mongodb://mongo:27017/JoodTubeDB';
-
+console.log(url);
 const connectDB = async () => {
   try {
       const conn = await mongoose.connect(url, {
