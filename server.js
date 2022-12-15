@@ -1,5 +1,6 @@
 const app = require("./app");
 const connectDB = require('./setupDB.js');
+
 // const mongoose = require("mongoose");
 //Url for localhost
 // var url = "mongodb://localhost:27017/JoodTubeDB"; 
