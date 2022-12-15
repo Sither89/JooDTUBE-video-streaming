@@ -7,5 +7,6 @@ const courseSchema = new mongoose.Schema({
     Teacher: String
 });
 
-// module.exports.courseContact = mongoose.model('course', courseSchema);
-module.exports = courseSchema;
+// module.exports.courseContact = mongoose.model('courses', courseSchema);
+// module.exports = courseSchema;
+module.exports = mongoose.model('courses', courseSchema);
