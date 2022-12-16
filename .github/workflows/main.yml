@@ -2,8 +2,9 @@ name: CI/CD
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   pull_request:
-    branches: [ main ]
-    types: [ opened ]
+    # Sequence of patterns matched against refs/heads
+    branches:    
+      - main
 jobs:
   test:
     runs-on: ubuntu-latest
