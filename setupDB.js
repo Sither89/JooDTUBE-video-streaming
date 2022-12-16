@@ -9,9 +9,11 @@ process.env.STATUS === 'production'
   ? (host = process.env.PROD_HOST)
   : (host = process.env.DEV_HOST);
 // Connection URL
+
 const url = 'mongodb://'+ host +':27017/JoodTubeDB';
 // const url = 'mongodb://mongo:27017/JoodTubeDB';
 console.log(url);
+
 const connectDB = async () => {
   try {
       const conn = await mongoose.connect(url, {

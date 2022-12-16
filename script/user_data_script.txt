@@ -6,5 +6,16 @@ sudo service docker start
 
 sudo gpasswd -a ec2-user docker
 newgrp docker
+sudo yum install git -y
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
-docker run -dp 9090:9090 sither/joodtubeee
+cd /home/ec2-user
+su ec2-user -c "git clone https://github.com/Sither89/JooDTUBE-video-streaming.git"
+cd JooDTUBE-video-streaming
+touch .env
+echo 'STATUS=production' >> .env
+echo '#DB CONFIG' >> .env
+echo 'PROD_HOST="mongo"' >> .env
+echo 'DEV_HOST="localhost"' >> .env
+docker-compose up
